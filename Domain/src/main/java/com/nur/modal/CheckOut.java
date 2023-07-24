@@ -10,10 +10,12 @@ public class CheckOut extends AggregateRoot<UUID> {
     public Date dateTimeCheckIn;
     public String typeCheckIn;
 
-    public CheckOut(Date dateTimeCheckIn, String typeCheckIn) {
+    private UUID reserveID;
+    public CheckOut(Date dateTimeCheckIn, String typeCheckIn, UUID reserveID) {
         super(UUID.randomUUID());
         this.dateTimeCheckIn = dateTimeCheckIn;
         this.typeCheckIn = typeCheckIn;
+        this.reserveID = reserveID;
     }
 }
 

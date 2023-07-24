@@ -7,12 +7,13 @@ import java.util.UUID;
 
 @Getter
 public class CheckIn extends AggregateRoot<UUID> {
-    public Date dateTimeCheckIn;
-    public String typeCheckIn;
-
-    public CheckIn(Date dateTimeCheckIn, String typeCheckIn) {
+    private Date dateTimeCheckIn;
+    private String typeCheckIn;
+    private UUID reserveID;
+    public CheckIn(Date dateTimeCheckIn, String typeCheckIn, UUID reserveID) {
         super(UUID.randomUUID());
         this.dateTimeCheckIn = dateTimeCheckIn;
         this.typeCheckIn = typeCheckIn;
+        this.reserveID = reserveID;
     }
 }

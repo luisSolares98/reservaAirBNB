@@ -1,4 +1,4 @@
-package com.nur.modal;
+package com.nur.modal.enun;
 
 import lombok.Getter;
 

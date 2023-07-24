@@ -1,6 +1,7 @@
 package com.nur.modal;
 
 import com.nur.core.Entity;
+import com.nur.modal.enun.StateReserve;
 import lombok.Getter;
 import lombok.Setter;
 
