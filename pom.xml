@@ -17,7 +17,8 @@
 	<modules>
 		<module>Domain</module>
 		<module>SharedKernel</module>
-	</modules>
+        <module>Infraestructura</module>
+    </modules>
 	<properties>
 		<java.version>17</java.version>
 		<lombok.version>1.18.22</lombok.version>
@@ -38,6 +39,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

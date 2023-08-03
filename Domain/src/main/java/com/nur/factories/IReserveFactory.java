@@ -6,5 +6,5 @@ import com.nur.modal.enun.StateReserve;
 import java.util.Date;
 
 public interface IReserveFactory {
-    Reserve createReserve(int dni, Date dateIn, StateReserve state, Date dateOut);
+    Reserve createReserve(Date dateIn, String state, Date dateOut);
 }

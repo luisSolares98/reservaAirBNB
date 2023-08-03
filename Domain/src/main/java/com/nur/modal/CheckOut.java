@@ -9,7 +9,6 @@ import java.util.UUID;
 public class CheckOut extends AggregateRoot<UUID> {
     public Date dateTimeCheckIn;
     public String typeCheckIn;
-
     private UUID reserveID;
     public CheckOut(Date dateTimeCheckIn, String typeCheckIn, UUID reserveID) {
         super(UUID.randomUUID());
