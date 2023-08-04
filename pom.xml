@@ -18,13 +18,34 @@
 		<module>Domain</module>
 		<module>SharedKernel</module>
         <module>Infraestructura</module>
-    </modules>
+		<module>application</module>
+	</modules>
 	<properties>
 		<java.version>17</java.version>
 		<lombok.version>1.18.22</lombok.version>
 	</properties>
 	<dependencies>
-
+		<dependency>
+			<groupId>net.sizovs</groupId>
+			<artifactId>pipelinr</artifactId>
+			<version>0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.6.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

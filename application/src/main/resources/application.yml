@@ -1,0 +1,16 @@
+server:
+  port: ${PORT:8082}
+
+spring:
+  datasource:
+    url: enlace
+    username: user
+    password: user
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /
