@@ -1,7 +1,9 @@
 package com.nur.valueObject;
 
 import com.nur.core.IBussinessRule;
+import lombok.Getter;
 
+@Getter
 public class NotNegative implements IBussinessRule {
     Float number;
 

@@ -9,12 +9,17 @@ import java.util.UUID;
 /*valuoObject mayor a 0 pagos*/
 @Getter
 public class Payment extends AggregateRoot<UUID> {
-    private StatePayment statePayment;
+    private String statePayment;
     private NotNegative payment;
+    private UUID reserveID;
 
-    public Payment(StatePayment statePayment, float payment) {
+    public Payment(String statePayment, float payment, UUID reserveID) {
         super(UUID.randomUUID());
         this.statePayment = statePayment;
         this.payment = new NotNegative(payment);
+        this.reserveID = reserveID;
+    }
+    public float getPayment() {
+        return payment.getNumber();
     }
 }
