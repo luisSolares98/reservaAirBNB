@@ -5,8 +5,10 @@ import an.awesome.pipelinr.Notification;
 import an.awesome.pipelinr.Pipeline;
 import an.awesome.pipelinr.Pipelinr;
 import com.nur.repositories.checkin.CheckInJpaRepository;
+import com.nur.repositories.checkout.CheckOutJpaRepository;
 import com.nur.repositories.reserve.ReserveJpaRepository;
 import com.nur.respositories.ICheckInRepository;
+import com.nur.respositories.ICheckOutRepository;
 import com.nur.respositories.IReserveRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -38,10 +40,17 @@ public class Main {
         return new ReserveJpaRepository();
     }
 
-    /*@Bean(name = "checkInRepository")
+    @Primary
+    @Bean(name = "checkInRepository")
     public ICheckInRepository checkInRepository() {
         return new CheckInJpaRepository();
-    }*/
+    }
+
+    @Primary
+    @Bean(name = "checkOutRepository")
+    public ICheckOutRepository checkOutRepository() {
+        return new CheckOutJpaRepository();
+    }
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
