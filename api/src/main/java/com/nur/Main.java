@@ -6,9 +6,11 @@ import an.awesome.pipelinr.Pipeline;
 import an.awesome.pipelinr.Pipelinr;
 import com.nur.repositories.checkin.CheckInJpaRepository;
 import com.nur.repositories.checkout.CheckOutJpaRepository;
+import com.nur.repositories.payment.PaymentJpaRepository;
 import com.nur.repositories.reserve.ReserveJpaRepository;
 import com.nur.respositories.ICheckInRepository;
 import com.nur.respositories.ICheckOutRepository;
+import com.nur.respositories.IPaymentRepository;
 import com.nur.respositories.IReserveRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -50,6 +52,11 @@ public class Main {
     @Bean(name = "checkOutRepository")
     public ICheckOutRepository checkOutRepository() {
         return new CheckOutJpaRepository();
+    }
+    @Primary
+    @Bean(name = "paymentRepository")
+    public IPaymentRepository paymentRepository() {
+        return new PaymentJpaRepository();
     }
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {

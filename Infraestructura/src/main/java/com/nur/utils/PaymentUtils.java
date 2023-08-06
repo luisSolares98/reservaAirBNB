@@ -24,6 +24,7 @@ public class PaymentUtils {
         model.setId(payment.getKey());
         model.setPayment(payment.getPayment());
         model.setStatePayment(payment.getStatePayment());
+        model.setReserveID(payment.getReserveID());
         return model;
     }
     public static Payment jpaToPayment(PaymentJapModel jpaModel)
