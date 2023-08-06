@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface IPaymentRepository {
     UUID update(Payment payment);
 
-    Payment get(UUID id);
+    Payment getById(UUID id);
 
     Payment findByReserve(UUID reserve)
             throws BussinessRuleValidationException;

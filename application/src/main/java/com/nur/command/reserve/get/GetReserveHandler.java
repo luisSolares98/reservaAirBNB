@@ -2,8 +2,8 @@ package com.nur.command.reserve.get;
 
 import an.awesome.pipelinr.Command;
 import com.nur.dtos.ReserveDTO;
-import com.nur.factories.IReserveFactory;
-import com.nur.factories.ReserveFactory;
+import com.nur.factories.reserve.IReserveFactory;
+import com.nur.factories.reserve.ReserveFactory;
 import com.nur.model.Reserve;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;

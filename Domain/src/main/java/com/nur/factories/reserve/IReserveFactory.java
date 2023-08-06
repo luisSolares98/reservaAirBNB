@@ -1,4 +1,4 @@
-package com.nur.factories;
+package com.nur.factories.reserve;
 
 
 import com.nur.core.BussinessRuleValidationException;

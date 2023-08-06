@@ -1,10 +1,24 @@
 package com.nur.util;
 
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
 import com.nur.model.Reserve;
 
+import java.util.UUID;
+
 public class ReserveInMapper {
     public static ReserveDTO from(Reserve reserve) {
-        return null;
+        if (reserve == null) return ReserveDTO.builder().build();
+        return ReserveDTO.builder()
+                .reserveID(reserve.getKey().toString())
+                .dateIn(reserve.getDateIn())
+                .dateOut(reserve.getDateOut())
+                .state(reserve.getState())
+                .build();
+    }
+
+    public static Reserve from(ReserveDTO reserveDTO)
+            throws BussinessRuleValidationException {
+        return Reserve.builder().dateIn(reserveDTO.getDateIn()).dateOut(reserveDTO.getDateOut()).state(reserveDTO.getState()).build();
     }
 }

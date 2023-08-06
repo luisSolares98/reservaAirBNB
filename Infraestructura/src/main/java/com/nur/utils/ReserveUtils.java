@@ -17,9 +17,7 @@ public class ReserveUtils {
                 .map((Reserve reserva) -> reservaToJpaEntity(reserva))
                 .toList();
     }
-    public static ReserveJpaModel reservaToJpaEntity(
-            Reserve reserva
-    ) {
+    public static ReserveJpaModel reservaToJpaEntity(Reserve reserva) {
         ReserveJpaModel model = new ReserveJpaModel();
         model.setId(reserva.getKey());
         model.setState(reserva.getState().toString());
@@ -29,6 +27,6 @@ public class ReserveUtils {
     }
     public static Reserve jpaToreserva(ReserveJpaModel jpaModel)
             throws BussinessRuleValidationException {
-        return new Reserve(jpaModel.getDateIn(), jpaModel.getState(), jpaModel.getDateOut());
+        return Reserve.builder().dateIn(jpaModel.getDateIn()).dateOut(jpaModel.getDateOut()).state(jpaModel.getState()).build();
     }
 }

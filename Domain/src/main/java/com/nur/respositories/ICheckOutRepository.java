@@ -7,5 +7,5 @@ import java.util.UUID;
 public interface ICheckOutRepository {
     UUID update(CheckOut checkOut);
 
-    CheckOut get(UUID id);
+    CheckOut getById(UUID id);
 }

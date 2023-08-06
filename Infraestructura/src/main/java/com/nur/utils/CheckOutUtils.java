@@ -22,13 +22,13 @@ public class CheckOutUtils {
     ) {
         CheckOutJapModel model = new CheckOutJapModel();
         model.setId(checkOut.getKey());
-        model.setDateTimeCheckIn(checkOut.getDateTimeCheckIn());
-        model.setTypeCheckIn(checkOut.getTypeCheckIn());
+        model.setDateTimeCheckOut(checkOut.getDateTimeCheckOut());
+        model.setTypeCheckOut(checkOut.getTypeCheckOut());
         model.setReserveID(checkOut.getReserveID());
         return model;
     }
     public static CheckOut jpaToCheckOut(CheckOutJapModel jpaModel)
             throws BussinessRuleValidationException {
-        return new CheckOut(jpaModel.getDateTimeCheckIn(), jpaModel.getTypeCheckIn(), jpaModel.getReserveID());
+        return new CheckOut(jpaModel.getDateTimeCheckOut(), jpaModel.getTypeCheckOut(), jpaModel.getReserveID());
     }
 }

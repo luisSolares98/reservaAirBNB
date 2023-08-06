@@ -7,5 +7,5 @@ import java.util.UUID;
 public interface ICheckInRepository {
     UUID update(CheckIn checkIn);
 
-    CheckIn get(UUID id);
+    CheckIn getById(UUID id);
 }

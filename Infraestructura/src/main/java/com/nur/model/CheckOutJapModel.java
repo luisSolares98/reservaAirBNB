@@ -16,11 +16,11 @@ public class CheckOutJapModel {
     private UUID id;
 
     @Column(nullable = false)
-    private Date dateTimeCheckIn;
+    private Date dateTimeCheckOut;
 
     @Column(nullable = false)
     private UUID reserveID;
 
     @Column(nullable = false)
-    private String typeCheckIn;
+    private String typeCheckOut;
 }

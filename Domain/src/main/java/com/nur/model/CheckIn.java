@@ -1,12 +1,16 @@
 package com.nur.model;
 
 import com.nur.core.AggregateRoot;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Getter
+@Setter
+@Builder
 public class CheckIn extends AggregateRoot {
     private Date dateTimeCheckIn;
     private String typeCheckIn;

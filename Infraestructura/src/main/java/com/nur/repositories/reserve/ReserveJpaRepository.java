@@ -1,23 +1,31 @@
 package com.nur.repositories.reserve;
 
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
 import com.nur.respositories.IReserveRepository;
 import com.nur.utils.ReserveUtils;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import java.util.*;
 
-import java.util.List;
-import java.util.UUID;
 @Service
 public class ReserveJpaRepository implements IReserveRepository {
     @Autowired
     private IReserveCrudRepository reserveCrudRepository;
     @Override
     public List<Reserve> getAll() {
-        return null;
+        List<ReserveJpaModel> jpaModels = reserveCrudRepository.findAll();
+        List<Reserve> baggages = new ArrayList<>();
+        if (jpaModels.isEmpty()) return Collections.emptyList();
+        for (ReserveJpaModel reserveJpaModel : jpaModels) {
+            try {
+                baggages.add(ReserveUtils.jpaToreserva(reserveJpaModel));
+            } catch (BussinessRuleValidationException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return baggages;
     }
 
     @Override
@@ -34,15 +42,9 @@ public class ReserveJpaRepository implements IReserveRepository {
                     reserveCrudRepository.findById(id).orElse(null)
             );
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
-    /*@Override
-    public void CreateAsync(Reserve obj) {
-        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(obj);
-        System.out.println(reserveCrudRepository.save(reserveJpaModel).getId());
-    }*/
 
 }

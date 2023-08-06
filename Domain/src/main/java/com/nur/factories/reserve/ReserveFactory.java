@@ -1,4 +1,4 @@
-package com.nur.factories;
+package com.nur.factories.reserve;
 
 
 import com.nur.core.BussinessRuleValidationException;
@@ -9,6 +9,6 @@ import java.util.Date;
 public class ReserveFactory implements IReserveFactory{
     @Override
     public Reserve createReserve( Date dateIn, String state, Date dateOut) throws BussinessRuleValidationException {
-        return new Reserve( dateIn, state, dateOut);
+        return Reserve.builder().dateIn(dateIn).dateOut(dateOut).state(state).build();
     }
 }
