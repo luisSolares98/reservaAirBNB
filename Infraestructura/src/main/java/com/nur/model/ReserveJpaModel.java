@@ -1,7 +1,6 @@
 package com.nur.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +10,12 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
+@Builder
 @Table(name = "Reserve")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReserveJpaModel {
     @Id
     @Column(nullable = false)

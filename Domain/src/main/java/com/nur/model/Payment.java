@@ -1,25 +1,24 @@
-package com.nur.modal;
+package com.nur.model;
 
 import com.nur.core.AggregateRoot;
-import com.nur.modal.enun.StatePayment;
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.valueObject.NotNegative;
 import lombok.Getter;
 
 import java.util.UUID;
-/*valuoObject mayor a 0 pagos*/
+
 @Getter
-public class Payment extends AggregateRoot<UUID> {
+public class Payment extends AggregateRoot {
     private String statePayment;
     private NotNegative payment;
     private UUID reserveID;
 
-    public Payment(String statePayment, float payment, UUID reserveID) {
-        super(UUID.randomUUID());
+    public Payment(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException {
         this.statePayment = statePayment;
         this.payment = new NotNegative(payment);
         this.reserveID = reserveID;
     }
     public float getPayment() {
-        return payment.getNumber();
+        return payment.getPayment();
     }
 }

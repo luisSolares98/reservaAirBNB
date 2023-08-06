@@ -1,6 +1,7 @@
 package com.nur.utils;
+
 import com.nur.core.BussinessRuleValidationException;
-import com.nur.modal.Reserve;
+import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
 
 import java.util.Collections;

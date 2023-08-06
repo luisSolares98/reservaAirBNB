@@ -4,21 +4,22 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
-public abstract class Entity<UID> {
-    public UID key;
+public abstract class Entity{
+    public UUID key;
     public List<DomainEvent> domainEvents;
 
-    protected Entity(UID key) {
-        this.key = key;
+    protected Entity() {
+        this.key = UUID.randomUUID();
         this.domainEvents = new ArrayList<>();
     }
 
     public void addDomainEvents(DomainEvent event) {
         this.domainEvents.add(event);
     }
-    protected void setKey(UID key) {
+    protected void setKey(UUID key) {
         this.key = key;
     }
 }

@@ -1,16 +1,13 @@
 package com.nur.respositories;
 
-import com.nur.core.IRepository;
-import com.nur.modal.Reserve;
-import org.springframework.scheduling.config.Task;
-
+import com.nur.model.Reserve;
 import java.util.List;
 import java.util.UUID;
 
-public interface IReserveRepository extends IRepository<Reserve, UUID> {
+public interface IReserveRepository {
 
     List<Reserve> getAll();
 
-    Task updateReserve(Reserve reserve);
-
+    UUID updateReserve(Reserve reserve);
+    Reserve getById(UUID id);
 }

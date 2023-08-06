@@ -1,80 +1,47 @@
 package com.nur.repositories.reserve;
 
+import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
+import com.nur.respositories.IReserveRepository;
+import com.nur.utils.ReserveUtils;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+@Repository
+public class ReserveJpaRepository implements IReserveRepository {
 
-public class ReserveJpaRepository implements IReserveCrudRepository{
-    @Autowired
     private IReserveCrudRepository reserveCrudRepository;
-
     @Override
-    public List<ReserveJpaModel> listReserve(ReserveJpaModel reserveJpaModel) {
-        // Iterable<ReserveJpaModel> reserveJpaModels =  reserveCrudRepository.findAll();
-
+    public List<Reserve> getAll() {
         return null;
     }
 
     @Override
-    public <S extends ReserveJpaModel> S save(S entity) {
-        return null;
+    public UUID updateReserve(Reserve reserve) {
+        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
+        reserveCrudRepository.save(reserveJpaModel);
+        return reserveCrudRepository.save(reserveJpaModel).getId();
     }
 
     @Override
-    public <S extends ReserveJpaModel> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
+    public Reserve getById(UUID id) {
+        try {
+            return ReserveUtils.jpaToreserva(
+                    reserveCrudRepository.findById(id).orElse(null)
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    @Override
-    public Optional<ReserveJpaModel> findById(UUID uuid) {
-        return Optional.empty();
-    }
+    /*@Override
+    public void CreateAsync(Reserve obj) {
+        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(obj);
+        System.out.println(reserveCrudRepository.save(reserveJpaModel).getId());
+    }*/
 
-    @Override
-    public boolean existsById(UUID uuid) {
-        return false;
-    }
-
-    @Override
-    public Iterable<ReserveJpaModel> findAll() {
-        return reserveCrudRepository.findAll();
-    }
-
-    @Override
-    public Iterable<ReserveJpaModel> findAllById(Iterable<UUID> uuids) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void deleteById(UUID uuid) {
-
-    }
-
-    @Override
-    public void delete(ReserveJpaModel entity) {
-
-    }
-
-    @Override
-    public void deleteAllById(Iterable<? extends UUID> uuids) {
-
-    }
-
-    @Override
-    public void deleteAll(Iterable<? extends ReserveJpaModel> entities) {
-
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
 }

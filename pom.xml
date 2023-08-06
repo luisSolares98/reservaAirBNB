@@ -19,7 +19,8 @@
 		<module>SharedKernel</module>
         <module>Infraestructura</module>
 		<module>application</module>
-	</modules>
+        <module>api</module>
+    </modules>
 	<properties>
 		<java.version>17</java.version>
 		<lombok.version>1.18.22</lombok.version>
@@ -68,6 +69,26 @@
 			<version>1.0.2</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>6.0.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>6.0.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

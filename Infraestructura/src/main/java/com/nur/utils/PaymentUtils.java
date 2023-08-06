@@ -1,8 +1,9 @@
 package com.nur.utils;
 
 import com.nur.core.BussinessRuleValidationException;
-import com.nur.modal.Payment;
+import com.nur.model.Payment;
 import com.nur.model.PaymentJapModel;
+
 import java.util.Collections;
 import java.util.List;
 

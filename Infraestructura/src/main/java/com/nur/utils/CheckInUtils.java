@@ -1,11 +1,13 @@
 package com.nur.utils;
 
+import com.nur.annotations.Generated;
 import com.nur.core.BussinessRuleValidationException;
-import com.nur.modal.CheckIn;
+import com.nur.model.CheckIn;
 import com.nur.model.CheckInJapModel;
+
 import java.util.Collections;
 import java.util.List;
-
+@Generated
 public class CheckInUtils {
     public static List<CheckInJapModel> checkInJpaModelList(
             List<CheckIn> checkIns

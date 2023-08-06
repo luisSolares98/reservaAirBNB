@@ -1,8 +1,9 @@
 package com.nur.utils;
 
 import com.nur.core.BussinessRuleValidationException;
-import com.nur.modal.CheckOut;
+import com.nur.model.CheckOut;
 import com.nur.model.CheckOutJapModel;
+
 import java.util.Collections;
 import java.util.List;
 

@@ -1,23 +1,18 @@
 package com.nur.valueObject;
 
-import com.nur.core.IBussinessRule;
+import com.nur.core.BussinessRuleValidationException;
+import com.nur.core.ValueObject;
+import com.nur.rule.NotNegativeRule;
 import lombok.Getter;
 
 @Getter
-public class NotNegative implements IBussinessRule {
-    Float number;
+public class NotNegative extends ValueObject {
+    private final float payment;
 
-    public NotNegative(Float number) {
-        this.number = number;
+
+    public NotNegative(float payment) throws BussinessRuleValidationException {
+        CheckRule(new NotNegativeRule(payment));
+        this.payment = payment;
     }
 
-    @Override
-    public boolean isValid() {
-        return number > 0;
-    }
-
-    @Override
-    public String message() {
-        return "negative number";
-    }
 }

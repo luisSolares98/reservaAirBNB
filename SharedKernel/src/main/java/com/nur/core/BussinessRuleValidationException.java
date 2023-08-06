@@ -2,10 +2,9 @@ package com.nur.core;
 
 import lombok.Getter;
 
-import java.io.Serializable;
 @Getter
-public class BussinessRuleValidationException extends Exception implements Serializable {
-    public IBussinessRule brokenRule;
+public class BussinessRuleValidationException extends Exception {
+    public BussinessRule brokenRule;
     public String details;
 
     public BussinessRuleValidationException(String message, String details) {
@@ -13,7 +12,7 @@ public class BussinessRuleValidationException extends Exception implements Seria
         this.details = details;
     }
 
-    public BussinessRuleValidationException(IBussinessRule brokenRule) {
+    public BussinessRuleValidationException(BussinessRule brokenRule) {
         this.brokenRule = brokenRule;
         this.details = brokenRule.message();
     }
