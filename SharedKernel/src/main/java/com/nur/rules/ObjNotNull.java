@@ -13,7 +13,7 @@ public class ObjNotNull implements BussinessRule {
 
   @Override
   public boolean isValid() {
-    return value != null;
+    return this.value != null;
   }
 
   @Override
