@@ -29,6 +29,6 @@ public class CheckOutUtils {
     }
     public static CheckOut jpaToCheckOut(CheckOutJapModel jpaModel)
             throws BussinessRuleValidationException {
-        return new CheckOut(jpaModel.getDateTimeCheckOut(), jpaModel.getTypeCheckOut(), jpaModel.getReserveID());
+        return new CheckOut(jpaModel.getId(), jpaModel.getDateTimeCheckOut(), jpaModel.getTypeCheckOut(), jpaModel.getReserveID());
     }
 }

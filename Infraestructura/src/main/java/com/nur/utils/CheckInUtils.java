@@ -30,6 +30,7 @@ public class CheckInUtils {
     }
     public static CheckIn jpaToCheckIn(CheckInJapModel jpaModel)
             throws BussinessRuleValidationException {
-        return new CheckIn(jpaModel.getDateTimeCheckIn(), jpaModel.getTypeCheckIn(), jpaModel.getReserveID());
+
+        return new CheckIn(jpaModel.getId(), jpaModel.getDateTimeCheckIn(), jpaModel.getTypeCheckIn(), jpaModel.getReserveID());
     }
 }

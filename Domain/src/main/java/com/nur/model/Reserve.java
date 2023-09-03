@@ -15,4 +15,11 @@ public class Reserve extends Entity {
     private Date dateIn;
     private String state;
     private Date dateOut;
+
+    public Reserve(UUID key, Date dateIn, String state, Date dateOut) {
+        this.key = key;
+        this.dateIn = dateIn;
+        this.state = state;
+        this.dateOut = dateOut;
+    }
 }
