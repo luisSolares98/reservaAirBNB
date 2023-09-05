@@ -104,6 +104,10 @@
 				<configuration>
 					<includes>com/nur/**/*.*</includes>
 					<excludes>
+						<exclude>com/nur/core/*.*</exclude>
+						<exclude>com/nur/rules/*.*</exclude>
+						<exclude>com/nur/valueobjects/*.*</exclude>
+						<exclude>com/nur/model/*.*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
