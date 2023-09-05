@@ -29,6 +29,6 @@ public class PaymentUtils {
     }
     public static Payment jpaToPayment(PaymentJapModel jpaModel)
             throws BussinessRuleValidationException {
-        return new Payment(jpaModel.getStatePayment(), jpaModel.getPayment(), jpaModel.getReserveID());
+        return new Payment(jpaModel.getId(),jpaModel.getStatePayment(), jpaModel.getPayment(), jpaModel.getReserveID());
     }
 }

@@ -18,8 +18,8 @@ public class ReserveController {
     }
 
     @PostMapping("/")
-    public ReserveDTO createReserve(@RequestBody ReserveDTO checkInDto) {
-        CreateReserveCommand assignSeatCommand = new CreateReserveCommand(checkInDto);
+    public ReserveDTO createReserve(@RequestBody ReserveDTO reserveDTO) {
+        CreateReserveCommand assignSeatCommand = new CreateReserveCommand(reserveDTO);
         return assignSeatCommand.execute(pipeline);
     }
     @GetMapping("/{idReserve}")

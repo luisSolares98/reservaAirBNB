@@ -18,12 +18,12 @@ public class CheckOutController {
     }
 
     @PostMapping("/")
-    public CheckOutDTO createReserve(@RequestBody CheckOutDTO check) {
+    public CheckOutDTO create(@RequestBody CheckOutDTO check) {
         CreateCheckOutCommand assignSeatCommand = new CreateCheckOutCommand(check);
         return assignSeatCommand.execute(pipeline);
     }
     @GetMapping("/{idCheck}")
-    public CheckOutDTO getReserve(@PathVariable String idCheck) {
+    public CheckOutDTO get(@PathVariable String idCheck) {
         GetCheckOutCommand assignSeatCommand = new GetCheckOutCommand(idCheck);
         return assignSeatCommand.execute(pipeline);
     }

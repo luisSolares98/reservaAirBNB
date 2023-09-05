@@ -1,22 +1,18 @@
 package com.nur.dtos;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-
 import java.util.Date;
 
 @Getter
 @Setter
 @Builder
+@ToString
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ReserveDTO {
     private String reserveID;
     private Date dateIn;
     private String state;
     private Date dateOut;
-    public ReserveDTO(String reserveID, Date dateIn, String state, Date dateOut) {
-        this.reserveID = reserveID;
-        this.dateIn = dateIn;
-        this.state = state;
-        this.dateOut = dateOut;
-    }
 }

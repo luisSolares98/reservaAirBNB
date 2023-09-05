@@ -18,12 +18,12 @@ public class CheckInController {
     }
 
     @PostMapping("/")
-    public CheckInDTO createReserve(@RequestBody CheckInDTO checkInDto) {
+    public CheckInDTO create(@RequestBody CheckInDTO checkInDto) {
         CreateCheckInCommand assignSeatCommand = new CreateCheckInCommand(checkInDto);
         return assignSeatCommand.execute(pipeline);
     }
     @GetMapping("/{idCheckIn}")
-    public CheckInDTO getReserve(@PathVariable String idCheckIn) {
+    public CheckInDTO get(@PathVariable String idCheckIn) {
         GetCheckInCommand assignSeatCommand = new GetCheckInCommand(idCheckIn);
         return assignSeatCommand.execute(pipeline);
     }

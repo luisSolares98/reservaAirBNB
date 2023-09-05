@@ -17,12 +17,12 @@ public class PaymentController {
     }
 
     @PostMapping("/")
-    public PaymentDTO createPayment(@RequestBody PaymentDTO dto) {
+    public PaymentDTO create(@RequestBody PaymentDTO dto) {
         CreatePaymentCommand assignSeatCommand = new CreatePaymentCommand(dto);
         return assignSeatCommand.execute(pipeline);
     }
     @GetMapping("/{idPayment}")
-    public PaymentDTO getPayment(@PathVariable String idPayment) {
+    public PaymentDTO get(@PathVariable String idPayment) {
         GetPaymentCommand assignSeatCommand = new GetPaymentCommand(idPayment);
         return assignSeatCommand.execute(pipeline);
     }
