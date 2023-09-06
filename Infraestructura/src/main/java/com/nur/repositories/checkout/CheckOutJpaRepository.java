@@ -38,7 +38,7 @@ public class CheckOutJpaRepository implements ICheckOutRepository {
     @Override
     public CheckOut getById(UUID id) {
         try {
-            return CheckOutUtils.jpaToCheckOut(Objects.requireNonNull(repository.findById(id).orElse(null)));
+            return CheckOutUtils.jpaToCheckOut(repository.findById(id).orElse(null));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -8,6 +8,7 @@ import com.nur.factories.payment.PaymentFactory;
 import com.nur.model.Payment;
 import com.nur.respositories.IPaymentRepository;
 import com.nur.util.PaymentInMapper;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import java.util.UUID;
 
@@ -25,20 +26,18 @@ public class CreatePaymentHandler implements Command.Handler<CreatePaymentComman
     }
 
 
+    @SneakyThrows
     @Override
     public PaymentDTO handle(CreatePaymentCommand command) {
         Payment payment = null;
-        try {
-            payment = factory.create(command.paymentDTO.getStatePayment(), command.paymentDTO.getPayment(), UUID.fromString(command.paymentDTO.getReserveID()));
+        payment = factory.create(command.paymentDTO.getStatePayment(), command.paymentDTO.getPayment(), UUID.fromString(command.paymentDTO.getReserveID()));
 
-            if (payment == null) {
-                return null;
-            }
-            repository.update(payment);
-            return PaymentInMapper.from(payment);
-        } catch (BussinessRuleValidationException e) {
-            throw new RuntimeException(e);
+        if (payment == null) {
+            return null;
         }
+
+        repository.update(payment);
+        return PaymentInMapper.from(payment);
     }
 
 }

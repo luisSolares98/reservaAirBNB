@@ -1,8 +1,10 @@
 package com.nur.utils;
 
 import com.nur.core.BussinessRuleValidationException;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
+import com.nur.valueobjects.NullRule;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +29,9 @@ public class ReserveUtils {
     }
     public static Reserve jpaToreserva(ReserveJpaModel jpaModel)
             throws BussinessRuleValidationException {
-        return Reserve.builder().dateIn(jpaModel.getDateIn()).dateOut(jpaModel.getDateOut()).state(jpaModel.getState()).build();
+        if (jpaModel == null) {
+            throw new InvalidDataException("Data Not Found");
+        }
+        return new Reserve(jpaModel.getId(),jpaModel.getDateIn(), jpaModel.getState(), jpaModel.getDateOut());
     }
 }

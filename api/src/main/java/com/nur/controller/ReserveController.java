@@ -4,7 +4,10 @@ import an.awesome.pipelinr.Pipeline;
 import com.nur.command.reserve.create.CreateReserveCommand;
 import com.nur.command.reserve.get.GetReserveCommand;
 import com.nur.dtos.ReserveDTO;
+import com.nur.exceptions.InvalidDataException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,12 +21,12 @@ public class ReserveController {
     }
 
     @PostMapping("/")
-    public ReserveDTO createReserve(@RequestBody ReserveDTO reserveDTO) {
+    public ReserveDTO createReserve(@Valid @RequestBody ReserveDTO reserveDTO) {
         CreateReserveCommand assignSeatCommand = new CreateReserveCommand(reserveDTO);
         return assignSeatCommand.execute(pipeline);
     }
     @GetMapping("/{idReserve}")
-    public ReserveDTO getReserve(@PathVariable String idReserve) {
+    public ReserveDTO getReserve(@Valid @PathVariable String idReserve) {
         GetReserveCommand assignSeatCommand = new GetReserveCommand(idReserve);
         return assignSeatCommand.execute(pipeline);
     }

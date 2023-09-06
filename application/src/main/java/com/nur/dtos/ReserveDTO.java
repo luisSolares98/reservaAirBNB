@@ -2,6 +2,7 @@ package com.nur.dtos;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 public class ReserveDTO {
     private String reserveID;
     private Date dateIn;
+    @NotNull(message = "estado no puede ser null")
     private String state;
     private Date dateOut;
 }

@@ -8,6 +8,6 @@ public class CheckInFactory implements ICheckInFactory {
 
   @Override
   public CheckIn create(Date dateTimeCheckIn, String typeCheckIn, UUID reserveID) {
-    return CheckIn.builder().dateTimeCheckIn(dateTimeCheckIn).typeCheckIn(typeCheckIn).reserveID(reserveID).build();
+    return new CheckIn(dateTimeCheckIn, typeCheckIn, reserveID);
   }
 }

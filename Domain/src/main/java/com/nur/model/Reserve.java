@@ -1,17 +1,33 @@
 package com.nur.model;
 
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.core.Entity;
-import lombok.Builder;
+import com.nur.exceptions.InvalidDataException;
+import com.nur.rule.NotNegativeRule;
+import com.nur.valueObject.DateDiferent;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.UUID;
+
 @Getter
 @Setter
-@Builder
 public class Reserve extends Entity {
     private Date dateIn;
     private String state;
     private Date dateOut;
+    public Reserve(UUID key, Date dateIn, String state, Date dateOut) throws BussinessRuleValidationException{
+        this.key = key;
+        this.dateIn = dateIn;
+        this.state = state;
+        this.dateOut = dateOut;
+    }
+    public Reserve(Date dateIn, String state, Date dateOut) throws BussinessRuleValidationException {
+        new DateDiferent(dateIn,dateOut);
 
+        this.dateIn = dateIn;
+        this.state = state;
+        this.dateOut = dateOut;
+    }
 }

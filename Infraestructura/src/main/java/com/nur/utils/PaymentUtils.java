@@ -1,8 +1,10 @@
 package com.nur.utils;
 
 import com.nur.core.BussinessRuleValidationException;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.model.Payment;
 import com.nur.model.PaymentJapModel;
+import com.nur.valueobjects.NullRule;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +31,9 @@ public class PaymentUtils {
     }
     public static Payment jpaToPayment(PaymentJapModel jpaModel)
             throws BussinessRuleValidationException {
+        if (jpaModel == null) {
+            throw new InvalidDataException("Data Not Found");
+        }
         return new Payment(jpaModel.getId(),jpaModel.getStatePayment(), jpaModel.getPayment(), jpaModel.getReserveID());
     }
 }

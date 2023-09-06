@@ -25,18 +25,19 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
 
 
     @Override
-    public ReserveDTO handle(CreateReserveCommand createReserveCommand) {
+    public ReserveDTO handle(CreateReserveCommand createReserveCommand)  {
         Reserve reserve = null;
         try {
             reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(), createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut());
-            if (reserve == null) {
-                return null;
-            }
-            reserveRepository.updateReserve(reserve);
-            return ReserveInMapper.from(reserve);
         } catch (BussinessRuleValidationException e) {
             throw new RuntimeException(e);
         }
+        if (reserve == null) {
+            return null;
+        }
+        reserveRepository.updateReserve(reserve);
+        return ReserveInMapper.from(reserve);
+
     }
 
 }

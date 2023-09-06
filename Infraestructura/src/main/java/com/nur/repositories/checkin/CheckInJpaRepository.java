@@ -45,7 +45,7 @@ public class CheckInJpaRepository implements ICheckInRepository {
     @Override
     public CheckIn getById(UUID id) {
         try {
-            return CheckInUtils.jpaToCheckIn(Objects.requireNonNull(repository.findById(id).orElse(null)));
+            return CheckInUtils.jpaToCheckIn(repository.findById(id).orElse(null));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

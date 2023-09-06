@@ -17,6 +17,6 @@ public class NotNegativeRule implements BussinessRule {
 
     @Override
     public String message() {
-        return "negative number";
+        return "payment negative number or 0";
     }
 }

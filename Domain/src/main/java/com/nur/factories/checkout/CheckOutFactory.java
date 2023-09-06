@@ -9,6 +9,6 @@ public class CheckOutFactory implements ICheckOutFactory {
 
   @Override
   public CheckOut create(Date dateTimeCheckOut, String typeCheckOut, UUID reserveID) {
-    return CheckOut.builder().dateTimeCheckOut(dateTimeCheckOut).typeCheckOut(typeCheckOut).reserveID(reserveID).build();
+    return new CheckOut(dateTimeCheckOut, typeCheckOut, reserveID);
   }
 }
