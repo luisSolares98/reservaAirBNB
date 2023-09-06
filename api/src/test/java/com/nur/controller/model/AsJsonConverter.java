@@ -1,2 +1,3 @@
-package com.nur.controller.model;public class AsJsonConverter {
+package com.nur.controller.model;
+public class AsJsonConverter {
 }
