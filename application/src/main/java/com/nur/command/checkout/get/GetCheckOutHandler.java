@@ -7,6 +7,7 @@ import com.nur.factories.checkout.ICheckOutFactory;
 import com.nur.model.CheckOut;
 import com.nur.respositories.ICheckOutRepository;
 import com.nur.util.CheckOutMapper;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -21,6 +22,7 @@ public class GetCheckOutHandler implements Command.Handler<GetCheckOutCommand, C
         this.checkOutFactory = new CheckOutFactory();
     }
 
+    @SneakyThrows
     @Override
     public CheckOutDTO handle(GetCheckOutCommand getCheckOutCommand) {
         CheckOut check = checkOutRepository.getById(UUID.fromString(getCheckOutCommand.getCheck()));

@@ -1,15 +1,18 @@
 package com.nur.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "CheckIn")
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CheckInJapModel {
     @Id
     @Column(nullable = false)

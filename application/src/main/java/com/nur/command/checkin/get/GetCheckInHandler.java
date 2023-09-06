@@ -7,6 +7,7 @@ import com.nur.factories.checkin.ICheckInFactory;
 import com.nur.model.CheckIn;
 import com.nur.respositories.ICheckInRepository;
 import com.nur.util.CheckInMapper;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class GetCheckInHandler implements Command.Handler<GetCheckInCommand, Che
         this.checkInFactory = new CheckInFactory();
     }
 
+    @SneakyThrows
     @Override
     public CheckInDTO handle(GetCheckInCommand checkInCommand) {
         CheckIn reserve = checkInRepository.getById(UUID.fromString(checkInCommand.checkInID));

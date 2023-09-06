@@ -4,6 +4,7 @@ import com.nur.core.AggregateRoot;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
+@ToString
 public class CheckIn extends AggregateRoot {
     private Date dateTimeCheckIn;
     private String typeCheckIn;

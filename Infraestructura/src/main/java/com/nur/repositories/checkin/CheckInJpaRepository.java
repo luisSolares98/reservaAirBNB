@@ -24,30 +24,22 @@ public class CheckInJpaRepository implements ICheckInRepository {
     private IReserveCrudRepository reserveCrudRepository;
 
     @Override
-    public UUID update(CheckIn checkIn) {
+    public UUID update(CheckIn checkIn) throws BussinessRuleValidationException {
         CheckInJapModel model = CheckInUtils.checkInToJpaEntity(checkIn);
-        try {
-            Reserve reserve =ReserveUtils.jpaToreserva(
-                    reserveCrudRepository.findById(model.getReserveID()).orElse(null)
-            );
-            if(reserve == null) throw new BussinessRuleValidationException("not find", "reserve" );
 
-            reserve.setState("In Progress");
-            ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
-            reserveJpaModel.setId(model.getReserveID());
-            reserveCrudRepository.save(reserveJpaModel);
-            return repository.save(model).getId();
-        } catch (BussinessRuleValidationException e) {
-            throw new RuntimeException(e);
-        }
+        Reserve reserve =ReserveUtils.jpaToreserva(
+            reserveCrudRepository.findById(model.getReserveID()).orElse(null)
+        );
+
+        reserve.setState("In Progress");
+        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
+        reserveJpaModel.setId(model.getReserveID());
+        reserveCrudRepository.save(reserveJpaModel);
+        return repository.save(model).getId();
     }
 
     @Override
-    public CheckIn getById(UUID id) {
-        try {
-            return CheckInUtils.jpaToCheckIn(repository.findById(id).orElse(null));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public CheckIn getById(UUID id) throws BussinessRuleValidationException {
+        return CheckInUtils.jpaToCheckIn(repository.findById(id).orElse(null));
     }
 }

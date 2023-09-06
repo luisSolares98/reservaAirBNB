@@ -1,7 +1,9 @@
 package com.nur.repositories.payment;
 
 import com.nur.core.BussinessRuleValidationException;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.model.*;
+import com.nur.repositories.reserve.IReserveCrudRepository;
 import com.nur.respositories.IPaymentRepository;
 import com.nur.utils.PaymentUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +25,10 @@ public class PaymentJpaRepository implements IPaymentRepository {
     }
 
     @Override
-    public Payment getById(UUID id) {
-        try {
+    public Payment getById(UUID id) throws BussinessRuleValidationException {
             return PaymentUtils.jpaToPayment(
                     paymentCrudRepository.findById(id).orElse(null)
             );
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
-    @Override
-    public Payment findByReserve(UUID reserve) throws BussinessRuleValidationException {
-        return null;
-    }
 }

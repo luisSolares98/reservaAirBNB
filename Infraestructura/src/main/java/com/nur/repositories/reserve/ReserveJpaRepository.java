@@ -14,16 +14,12 @@ public class ReserveJpaRepository implements IReserveRepository {
     @Autowired
     private IReserveCrudRepository reserveCrudRepository;
     @Override
-    public List<Reserve> getAll() {
+    public List<Reserve> getAll() throws BussinessRuleValidationException {
         List<ReserveJpaModel> jpaModels = reserveCrudRepository.findAll();
         List<Reserve> baggages = new ArrayList<>();
         if (jpaModels.isEmpty()) return Collections.emptyList();
         for (ReserveJpaModel reserveJpaModel : jpaModels) {
-            try {
-                baggages.add(ReserveUtils.jpaToreserva(reserveJpaModel));
-            } catch (BussinessRuleValidationException e) {
-                throw new RuntimeException(e);
-            }
+            baggages.add(ReserveUtils.jpaToreserva(reserveJpaModel));
         }
         return baggages;
     }
@@ -36,14 +32,11 @@ public class ReserveJpaRepository implements IReserveRepository {
     }
 
     @Override
-    public Reserve getById(UUID id) {
-        try {
+    public Reserve getById(UUID id) throws BussinessRuleValidationException {
+
             return ReserveUtils.jpaToreserva(
                     reserveCrudRepository.findById(id).orElse(null)
             );
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 

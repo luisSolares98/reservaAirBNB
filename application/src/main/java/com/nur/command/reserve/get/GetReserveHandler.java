@@ -7,6 +7,7 @@ import com.nur.factories.reserve.ReserveFactory;
 import com.nur.model.Reserve;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -20,6 +21,7 @@ public class GetReserveHandler implements Command.Handler<GetReserveCommand, Res
         this.reserveFactory = new ReserveFactory();
     }
 
+    @SneakyThrows
     @Override
     public ReserveDTO handle(GetReserveCommand createReserveCommand) {
         Reserve reserve = reserveRepository.getById(

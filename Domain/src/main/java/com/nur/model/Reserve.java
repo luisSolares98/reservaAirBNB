@@ -7,12 +7,14 @@ import com.nur.rule.NotNegativeRule;
 import com.nur.valueObject.DateDiferent;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Getter
 @Setter
+@ToString
 public class Reserve extends Entity {
     private Date dateIn;
     private String state;
