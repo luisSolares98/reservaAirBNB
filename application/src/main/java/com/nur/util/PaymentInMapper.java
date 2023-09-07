@@ -1,11 +1,8 @@
 package com.nur.util;
 
 import com.nur.core.BussinessRuleValidationException;
-import com.nur.dtos.CheckOutDTO;
 import com.nur.dtos.PaymentDTO;
-import com.nur.model.CheckOut;
 import com.nur.model.Payment;
-import com.nur.valueObject.NotNegative;
 
 import java.util.UUID;
 

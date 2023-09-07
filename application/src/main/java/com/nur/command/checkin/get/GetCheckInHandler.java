@@ -1,7 +1,9 @@
 package com.nur.command.checkin.get;
 
 import an.awesome.pipelinr.Command;
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.CheckInDTO;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.checkin.CheckInFactory;
 import com.nur.factories.checkin.ICheckInFactory;
 import com.nur.model.CheckIn;
@@ -21,14 +23,14 @@ public class GetCheckInHandler implements Command.Handler<GetCheckInCommand, Che
         this.checkInFactory = new CheckInFactory();
     }
 
-    @SneakyThrows
     @Override
     public CheckInDTO handle(GetCheckInCommand checkInCommand) {
-        CheckIn reserve = checkInRepository.getById(UUID.fromString(checkInCommand.checkInID));
-        if (reserve == null) {
-            return null;
+       try {
+            CheckIn reserve = checkInRepository.getById(UUID.fromString(checkInCommand.getCheckInID()));
+            return CheckInMapper.from(reserve);
+        } catch (Exception e) {
+            throw new InvalidDataException("Datos Null");
         }
-        return CheckInMapper.from(reserve);
     }
 
 }

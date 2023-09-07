@@ -1,14 +1,13 @@
 package com.nur.command.payment.create;
 
 import an.awesome.pipelinr.Command;
-import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.PaymentDTO;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.payment.IPaymentFactory;
 import com.nur.factories.payment.PaymentFactory;
 import com.nur.model.Payment;
 import com.nur.respositories.IPaymentRepository;
 import com.nur.util.PaymentInMapper;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import java.util.UUID;
 
@@ -26,18 +25,16 @@ public class CreatePaymentHandler implements Command.Handler<CreatePaymentComman
     }
 
 
-    @SneakyThrows
     @Override
     public PaymentDTO handle(CreatePaymentCommand command) {
         Payment payment = null;
-        payment = factory.create(command.paymentDTO.getStatePayment(), command.paymentDTO.getPayment(), UUID.fromString(command.paymentDTO.getReserveID()));
-
-        if (payment == null) {
-            return null;
+        try {
+            payment = factory.create(command.paymentDTO.getStatePayment(), command.paymentDTO.getPayment(), UUID.fromString(command.paymentDTO.getReserveID()));
+            repository.update(payment);
+            return PaymentInMapper.from(payment);
+        } catch (Exception ex) {
+            throw new InvalidDataException("Datos Null");
         }
-
-        repository.update(payment);
-        return PaymentInMapper.from(payment);
     }
 
 }

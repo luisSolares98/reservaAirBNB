@@ -2,6 +2,7 @@ package com.nur.command.reserve.get;
 
 import an.awesome.pipelinr.Command;
 import com.nur.dtos.ReserveDTO;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.reserve.IReserveFactory;
 import com.nur.factories.reserve.ReserveFactory;
 import com.nur.model.Reserve;
@@ -24,13 +25,14 @@ public class GetReserveHandler implements Command.Handler<GetReserveCommand, Res
     @SneakyThrows
     @Override
     public ReserveDTO handle(GetReserveCommand createReserveCommand) {
-        Reserve reserve = reserveRepository.getById(
-                UUID.fromString(createReserveCommand.getReserveID())
-        );
-        if (reserve == null) {
-            return null;
+        try{
+            Reserve reserve = reserveRepository.getById(
+                    UUID.fromString(createReserveCommand.getReserveID())
+            );
+            return ReserveInMapper.from(reserve);
+        } catch (Exception e) {
+            throw new InvalidDataException("Datos Null");
         }
-        return ReserveInMapper.from(reserve);
     }
 
 }

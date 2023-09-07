@@ -3,7 +3,6 @@ package com.nur.util;
 import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.CheckInDTO;
 import com.nur.model.CheckIn;
-
 import java.util.UUID;
 
 public class CheckInMapper {

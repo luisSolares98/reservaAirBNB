@@ -1,9 +1,6 @@
 package com.nur.dtos;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +8,7 @@ import java.util.List;
 @Getter
 @Builder
 @Setter
+@ToString
 public class CheckInDTO {
 
     public String checkInId;

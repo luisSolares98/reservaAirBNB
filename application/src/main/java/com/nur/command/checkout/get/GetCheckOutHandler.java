@@ -2,6 +2,7 @@ package com.nur.command.checkout.get;
 
 import an.awesome.pipelinr.Command;
 import com.nur.dtos.CheckOutDTO;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.checkout.CheckOutFactory;
 import com.nur.factories.checkout.ICheckOutFactory;
 import com.nur.model.CheckOut;
@@ -25,11 +26,12 @@ public class GetCheckOutHandler implements Command.Handler<GetCheckOutCommand, C
     @SneakyThrows
     @Override
     public CheckOutDTO handle(GetCheckOutCommand getCheckOutCommand) {
-        CheckOut check = checkOutRepository.getById(UUID.fromString(getCheckOutCommand.getCheck()));
-        if (check == null) {
-            return null;
+        try{
+            CheckOut check = checkOutRepository.getById(UUID.fromString(getCheckOutCommand.getCheck()));
+            return CheckOutMapper.from(check);
+        } catch (Exception e) {
+            throw new InvalidDataException("Datos Null");
         }
-        return CheckOutMapper.from(check);
     }
 
 }

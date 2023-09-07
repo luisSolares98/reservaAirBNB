@@ -1,15 +1,14 @@
 package com.nur.command.reserve.create;
 
 import an.awesome.pipelinr.Command;
-import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
+import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.reserve.IReserveFactory;
 import com.nur.factories.reserve.ReserveFactory;
 import com.nur.model.Reserve;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;
 import org.springframework.stereotype.Component;
-
 @Component
 public class CreateReserveHandler implements Command.Handler<CreateReserveCommand, ReserveDTO> {
 
@@ -29,15 +28,11 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
         Reserve reserve = null;
         try {
             reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(), createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut());
-        } catch (BussinessRuleValidationException e) {
-            throw new RuntimeException(e);
+            reserveRepository.updateReserve(reserve);
+            return ReserveInMapper.from(reserve);
+        } catch (Exception ex) {
+            throw new InvalidDataException("Datos Null");
         }
-        if (reserve == null) {
-            return null;
-        }
-        reserveRepository.updateReserve(reserve);
-        return ReserveInMapper.from(reserve);
-
     }
 
 }

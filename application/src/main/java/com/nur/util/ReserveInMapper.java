@@ -4,8 +4,6 @@ import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
 import com.nur.model.Reserve;
 
-import java.util.UUID;
-
 public class ReserveInMapper {
     public static ReserveDTO from(Reserve reserve) {
         if (reserve == null) return ReserveDTO.builder().build();

@@ -115,6 +115,8 @@
 						<exclude>com/nur/valueobjects/*</exclude>
 						<exclude>com/nur/model/*</exclude>
 						<exclude>com/nur/dtos/*</exclude>
+						<exclude>com/nur/exceptions/*</exclude>
+						<exclude>com/nur/model/enun/*</exclude>
 						<exclude>com/nur/Main.class</exclude>
 					</excludes>
 				</configuration>
