@@ -40,6 +40,10 @@ class CheckOutMapperTest {
     void testFrom() throws BussinessRuleValidationException, ParseException {
         CheckOut example = CheckOutFixture.whitDefault();
         CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
+        expect.setCheckOutId(expect.getCheckOutId());
+        expect.setTypeCheckOut(expect.getTypeCheckOut());
+        expect.setReserveId(expect.getReserveId());
+        expect.setDateTimeCheckOut(expect.getDateTimeCheckOut());
         CheckOutDTO response = CheckOutMapper.from(example);
         assertEquals(expect.toString(), response.toString());
     }

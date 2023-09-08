@@ -18,10 +18,6 @@ public class CheckInMapper {
 
     public static CheckIn from(CheckInDTO checkInDTO)
             throws BussinessRuleValidationException {
-        return CheckIn.builder()
-                .reserveID(UUID.fromString(checkInDTO.getReserveId()))
-                .dateTimeCheckIn(checkInDTO.getDateTimeCheckIn())
-                .typeCheckIn(checkInDTO.getTypeCheckIn())
-                .build();
+        return new CheckIn(checkInDTO.getDateTimeCheckIn(), checkInDTO.getTypeCheckIn(), UUID.fromString(checkInDTO.getReserveId()) );
     }
 }

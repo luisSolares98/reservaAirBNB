@@ -31,15 +31,18 @@ class CheckInMapperTest {
     }
 
     @Test
-    void testFromNull() {
-        CheckInDTO expect = CheckInDTO.builder().build();
+    void testFromNull() throws ParseException {
         CheckInDTO response = CheckInMapper.from((CheckIn) null);
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(CheckInDTO.builder().build().toString(), response.toString());
     }
     @Test
     void testFrom() throws BussinessRuleValidationException, ParseException {
         CheckIn example = CheckInFixture.whitDefault();
         CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
+        expect.setReserveId(expect.getReserveId());
+        expect.setCheckInId(expect.getCheckInId());
+        expect.setTypeCheckIn(expect.getTypeCheckIn());
+        expect.setDateTimeCheckIn(expect.getDateTimeCheckIn());
         CheckInDTO response = CheckInMapper.from(example);
         assertEquals(expect.toString(), response.toString());
     }

@@ -18,10 +18,6 @@ public class CheckOutMapper {
 
     public static CheckOut from(CheckOutDTO checkOutDTO)
             throws BussinessRuleValidationException {
-        return CheckOut.builder()
-                .reserveID(UUID.fromString(checkOutDTO.getReserveId()))
-                .dateTimeCheckOut(checkOutDTO.getDateTimeCheckOut())
-                .typeCheckOut(checkOutDTO.getTypeCheckOut())
-                .build();
+        return new CheckOut(checkOutDTO.getDateTimeCheckOut(), checkOutDTO.getTypeCheckOut(), UUID.fromString(checkOutDTO.getReserveId()));
     }
 }

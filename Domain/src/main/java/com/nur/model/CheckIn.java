@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @Getter
-@Setter
-@Builder
 @ToString
 public class CheckIn extends AggregateRoot {
     private Date dateTimeCheckIn;

@@ -40,6 +40,10 @@ class ReserveInMapperTest {
     void testFrom() throws BussinessRuleValidationException, ParseException {
         Reserve example = ReserveFixture.whitDefault();
         ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
+        expect.setDateIn(expect.getDateIn());
+        expect.setState(expect.getState());
+        expect.setDateOut(expect.getDateOut());
+        expect.setReserveID(expect.getReserveID());
         ReserveDTO response = ReserveInMapper.from(example);
         assertEquals(expect.toString(), response.toString());
     }

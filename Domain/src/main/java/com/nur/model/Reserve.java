@@ -2,8 +2,6 @@ package com.nur.model;
 
 import com.nur.core.BussinessRuleValidationException;
 import com.nur.core.Entity;
-import com.nur.exceptions.InvalidDataException;
-import com.nur.rule.NotNegativeRule;
 import com.nur.valueObject.DateDiferent;
 import lombok.Getter;
 import lombok.Setter;

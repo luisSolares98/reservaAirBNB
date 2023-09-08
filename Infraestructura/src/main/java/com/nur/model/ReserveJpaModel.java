@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Builder
 @Table(name = "Reserve")
 @Getter
 @Setter

@@ -7,7 +7,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "CheckIn")
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor

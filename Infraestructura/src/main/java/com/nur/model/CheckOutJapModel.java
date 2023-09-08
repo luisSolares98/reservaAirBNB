@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.UUID;
 @Entity
 @Table(name = "CheckOut")
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
