@@ -46,7 +46,7 @@ class CreateCheckInHandlerTest {
         expect.setReserveId(null);
         CreateCheckInCommand command = new CreateCheckInCommand(expect);
 
-        InvalidDataException exception = assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-        assertEquals("Datos Null", exception.getMessage());
+        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
+
     }
 }

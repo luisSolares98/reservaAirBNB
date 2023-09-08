@@ -49,7 +49,6 @@ class GetPaymentHandlerTest {
     @Test
     void handleError() throws ParseException, BussinessRuleValidationException {
         GetPaymentCommand command = new GetPaymentCommand(null);
-        InvalidDataException exception = assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-        assertEquals("Datos Null", exception.getMessage());
+        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
     }
 }

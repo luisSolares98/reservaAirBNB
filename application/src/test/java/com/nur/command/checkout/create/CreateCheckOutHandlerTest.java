@@ -43,7 +43,6 @@ class CreateCheckOutHandlerTest {
         expect.setReserveId(null);
         CreateCheckOutCommand command = new CreateCheckOutCommand(expect);
 
-        InvalidDataException exception = assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-        assertEquals("Datos Null", exception.getMessage());
+        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
     }
 }

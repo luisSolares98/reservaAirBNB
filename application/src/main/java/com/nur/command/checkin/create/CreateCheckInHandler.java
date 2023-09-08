@@ -37,7 +37,7 @@ public class CreateCheckInHandler implements Command.Handler<CreateCheckInComman
             checkInRepository.update(checkIn);
             return CheckInMapper.from(checkIn);
         } catch (Exception ex) {
-            throw new InvalidDataException("Datos Null");
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 

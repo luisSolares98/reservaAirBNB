@@ -29,8 +29,8 @@ public class GetCheckOutHandler implements Command.Handler<GetCheckOutCommand, C
         try{
             CheckOut check = checkOutRepository.getById(UUID.fromString(getCheckOutCommand.getCheck()));
             return CheckOutMapper.from(check);
-        } catch (Exception e) {
-            throw new InvalidDataException("Datos Null");
+        } catch (Exception ex) {
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 

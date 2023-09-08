@@ -33,7 +33,7 @@ public class CreatePaymentHandler implements Command.Handler<CreatePaymentComman
             repository.update(payment);
             return PaymentInMapper.from(payment);
         } catch (Exception ex) {
-            throw new InvalidDataException("Datos Null");
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 

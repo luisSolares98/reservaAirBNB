@@ -1,6 +1,8 @@
 package com.nur.command.reserve.create;
 
 import an.awesome.pipelinr.Command;
+import com.nur.core.BussinessRule;
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
 import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.reserve.IReserveFactory;
@@ -30,8 +32,8 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
             reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(), createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut());
             reserveRepository.updateReserve(reserve);
             return ReserveInMapper.from(reserve);
-        } catch (Exception ex) {
-            throw new InvalidDataException("Datos Null");
+        } catch (BussinessRuleValidationException ex) {
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 

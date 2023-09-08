@@ -34,7 +34,7 @@ public class CreateCheckOutHandler implements Command.Handler<CreateCheckOutComm
             checkOutRepository.update(checkOut);
             return CheckOutMapper.from(checkOut);
         } catch (Exception ex) {
-            throw new InvalidDataException("Datos Null");
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 

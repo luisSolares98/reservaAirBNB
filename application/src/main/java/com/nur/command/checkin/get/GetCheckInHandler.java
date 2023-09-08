@@ -28,8 +28,8 @@ public class GetCheckInHandler implements Command.Handler<GetCheckInCommand, Che
        try {
             CheckIn reserve = checkInRepository.getById(UUID.fromString(checkInCommand.getCheckInID()));
             return CheckInMapper.from(reserve);
-        } catch (Exception e) {
-            throw new InvalidDataException("Datos Null");
+        } catch (Exception ex) {
+           throw new InvalidDataException(ex.getMessage());
         }
     }
 

@@ -45,8 +45,6 @@ class CreateReserveHandlerTest {
     @Test
     void handleError() throws ParseException, BussinessRuleValidationException {
         CreateReserveCommand command = new CreateReserveCommand(null);
-
-        InvalidDataException exception = assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-        assertEquals("Datos Null", exception.getMessage());
+        assertThrows(NullPointerException.class, () -> service.handle(command)) ;
     }
 }

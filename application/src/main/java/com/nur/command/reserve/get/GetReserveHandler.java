@@ -30,8 +30,8 @@ public class GetReserveHandler implements Command.Handler<GetReserveCommand, Res
                     UUID.fromString(createReserveCommand.getReserveID())
             );
             return ReserveInMapper.from(reserve);
-        } catch (Exception e) {
-            throw new InvalidDataException("Datos Null");
+        } catch (Exception ex) {
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 

@@ -25,8 +25,8 @@ public class GetPaymentHandler implements Command.Handler<GetPaymentCommand, Pay
         try{
             Payment check = repository.getById(UUID.fromString(command.getPaymen()));
             return PaymentInMapper.from(check);
-        } catch (Exception e) {
-            throw new InvalidDataException("Datos Null");
+        } catch (Exception ex) {
+            throw new InvalidDataException(ex.getMessage());
         }
     }
 
