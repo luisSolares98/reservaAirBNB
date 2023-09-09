@@ -47,4 +47,9 @@ class CreateReserveHandlerTest {
         CreateReserveCommand command = new CreateReserveCommand(null);
         assertThrows(NullPointerException.class, () -> service.handle(command)) ;
     }
+    @Test
+    void handleErrorFecha() throws ParseException, BussinessRuleValidationException {
+        CreateReserveCommand command = new CreateReserveCommand(ReserveDTOFixture.whitDefaultFail());
+        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
+    }
 }

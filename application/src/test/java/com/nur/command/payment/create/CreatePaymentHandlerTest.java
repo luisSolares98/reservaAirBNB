@@ -47,7 +47,13 @@ class CreatePaymentHandlerTest {
         PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
         expect.setReserveID(null);
         CreatePaymentCommand command = new CreatePaymentCommand(expect);
-
+        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
+    }
+    @Test
+    void handleErrorMoneda() throws ParseException, BussinessRuleValidationException {
+        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+        expect.setPayment(0l);
+        CreatePaymentCommand command = new CreatePaymentCommand(expect);
         assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
     }
 }

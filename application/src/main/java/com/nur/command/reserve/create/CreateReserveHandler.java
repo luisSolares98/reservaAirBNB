@@ -33,7 +33,7 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
             reserveRepository.updateReserve(reserve);
             return ReserveInMapper.from(reserve);
         } catch (BussinessRuleValidationException ex) {
-            throw new InvalidDataException(ex.getMessage());
+            throw new InvalidDataException(ex.getDetails());
         }
     }
 

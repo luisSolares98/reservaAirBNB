@@ -3,7 +3,6 @@ package com.nur.repositories.payment;
 import com.nur.core.BussinessRuleValidationException;
 import com.nur.model.*;
 import com.nur.repositories.reserve.IReserveCrudRepository;
-import com.nur.repositories.reserve.ReserveJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +25,8 @@ class PaymentJpaRepositoryTest {
 
     @Spy
     IPaymentCrudRepository paymentCrudRepository;
+    @Spy
+    IReserveCrudRepository reserveCrudRepository;
     @BeforeEach
     void setUp() {
     }
@@ -34,6 +35,7 @@ class PaymentJpaRepositoryTest {
     void update()  throws BussinessRuleValidationException, ParseException{
         Payment payment = PaymentFixture.whitDefault();
         UUID sampleId = UUID.randomUUID();
+        Mockito.when(reserveCrudRepository.findById(any())).thenReturn(Optional.of(ReserveFixture.whitDefaultJPA()));
 
         Mockito.when(paymentCrudRepository.save(any(PaymentJapModel.class))).thenAnswer(invocation -> {
             PaymentJapModel savedModel = invocation.getArgument(0);

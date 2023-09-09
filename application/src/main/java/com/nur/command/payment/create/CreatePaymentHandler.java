@@ -1,6 +1,7 @@
 package com.nur.command.payment.create;
 
 import an.awesome.pipelinr.Command;
+import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.PaymentDTO;
 import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.payment.IPaymentFactory;
@@ -32,6 +33,8 @@ public class CreatePaymentHandler implements Command.Handler<CreatePaymentComman
             payment = factory.create(command.paymentDTO.getStatePayment(), command.paymentDTO.getPayment(), UUID.fromString(command.paymentDTO.getReserveID()));
             repository.update(payment);
             return PaymentInMapper.from(payment);
+        } catch (BussinessRuleValidationException ex) {
+            throw new InvalidDataException(ex.getDetails());
         } catch (Exception ex) {
             throw new InvalidDataException(ex.getMessage());
         }
