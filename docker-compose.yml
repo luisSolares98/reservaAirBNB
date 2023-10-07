@@ -1,6 +1,6 @@
 services:
   airnur:
-    build: .
+    build: luissolares98/msreserva:latest
     ports:
       - 8989:8080
     depends_on:
@@ -14,4 +14,4 @@ services:
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=Reserva
+      - POSTGRES_DB=msreserva
