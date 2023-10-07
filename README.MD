@@ -27,7 +27,8 @@ Los usuarios pueden realizar los pagos correspondientes.
 
 Los usuarios pueden realizar la solicitud de obtencion de informacion de alguno de lo mencionado.
 
-
+#### Para levantar el proyect
+debe de tener la DB creada 
 
 
 
