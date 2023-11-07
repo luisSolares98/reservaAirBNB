@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,4 +17,5 @@ public class ReserveDTO {
     private Date dateIn;
     private String state;
     private Date dateOut;
+    private UUID publishID;
 }

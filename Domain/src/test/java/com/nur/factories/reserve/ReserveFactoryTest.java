@@ -31,13 +31,13 @@ class ReserveFactoryTest {
         expect.setState(expect.getState());
         expect.setDateIn(expect.getDateIn());
         expect.setDateOut(expect.getDateOut());
-        Reserve reserve = reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut());
+        Reserve reserve = reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut(), expect.getPublishID());
         assertEquals(expect.toString(), reserve.toString());
     }
     @Test
     void createFail() throws BussinessRuleValidationException, ParseException {
         Reserve expect = ReserveFixture.whitDefaultFail();
-        BussinessRuleValidationException exception = assertThrows(BussinessRuleValidationException.class, () -> reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut())) ;
+        BussinessRuleValidationException exception = assertThrows(BussinessRuleValidationException.class, () -> reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut(), expect.getPublishID())) ;
         assertEquals("la fecha de ingreso no puede ser mayor a la de la salida", exception.getDetails());
     }
 }

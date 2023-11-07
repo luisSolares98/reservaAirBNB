@@ -29,7 +29,7 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
     public ReserveDTO handle(CreateReserveCommand createReserveCommand)  {
         Reserve reserve = null;
         try {
-            reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(), createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut());
+            reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(), createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut(), createReserveCommand.reserveDTO.getPublishID());
             reserveRepository.updateReserve(reserve);
             return ReserveInMapper.from(reserve);
         } catch (BussinessRuleValidationException ex) {
