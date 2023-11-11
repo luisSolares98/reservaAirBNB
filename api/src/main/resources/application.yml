@@ -1,12 +1,19 @@
 server:
   servlet:
     context-path: /airNUR
-  port: 8080
+  port: 9090
 
 spring:
+  rabbitmq:
+    virtual-host: hzgwkcsm
+    host: toad.rmq.cloudamqp.com
+    port: 5672
+    username: hzgwkcsm
+    password: feMUhIx0bxqeWN67wJEzjX4w3rUNBsSz
+
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: "jdbc:postgresql://postgres:5432/msreserva"
+    url: "jdbc:postgresql://localhost:5432/msreserva"
     username: postgres
     password: root
   jpa:
