@@ -25,7 +25,6 @@ public class ReserveUtils {
         model.setState(reserva.getState().toString());
         model.setDateIn(reserva.getDateIn());
         model.setDateOut(reserva.getDateOut());
-        model.setPublishID(reserva.getPublishID());
         return model;
     }
     public static Reserve jpaToreserva(ReserveJpaModel jpaModel)
@@ -33,6 +32,6 @@ public class ReserveUtils {
         if (jpaModel == null) {
             throw new InvalidDataException("Data Not Found");
         }
-        return new Reserve(jpaModel.getId(),jpaModel.getDateIn(), jpaModel.getState(), jpaModel.getDateOut(), jpaModel.getPublishID());
+        return new Reserve(jpaModel.getId(),jpaModel.getDateIn(), jpaModel.getState(), jpaModel.getDateOut());
     }
 }

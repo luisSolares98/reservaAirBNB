@@ -7,11 +7,9 @@ import an.awesome.pipelinr.Pipelinr;
 import com.nur.repositories.checkin.CheckInJpaRepository;
 import com.nur.repositories.checkout.CheckOutJpaRepository;
 import com.nur.repositories.payment.PaymentJpaRepository;
+import com.nur.repositories.publication.PublicationJpaRepository;
 import com.nur.repositories.reserve.ReserveJpaRepository;
-import com.nur.respositories.ICheckInRepository;
-import com.nur.respositories.ICheckOutRepository;
-import com.nur.respositories.IPaymentRepository;
-import com.nur.respositories.IReserveRepository;
+import com.nur.respositories.*;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.ObjectProvider;
@@ -40,6 +38,12 @@ public class Main {
     @Bean(name = "reserveRepository")
     public IReserveRepository reserveRepository() {
         return new ReserveJpaRepository();
+    }
+
+    @Primary
+    @Bean(name = "publishRepository")
+    public IPublicationRepository publishRepository() {
+        return new PublicationJpaRepository();
     }
 
     @Primary

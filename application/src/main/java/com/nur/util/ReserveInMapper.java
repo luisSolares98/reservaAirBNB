@@ -17,6 +17,6 @@ public class ReserveInMapper {
 
     public static Reserve from(ReserveDTO reserveDTO)
             throws BussinessRuleValidationException {
-        return new Reserve(reserveDTO.getDateIn(), reserveDTO.getState(), reserveDTO.getDateOut(), reserveDTO.getPublishID());
+        return new Reserve(reserveDTO.getDateIn(), reserveDTO.getState(), reserveDTO.getDateOut());
     }
 }

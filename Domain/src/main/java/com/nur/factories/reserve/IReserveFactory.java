@@ -8,5 +8,5 @@ import java.util.Date;
 import java.util.UUID;
 
 public interface IReserveFactory {
-    Reserve createReserve(Date dateIn, String state, Date dateOut, UUID publishID) throws BussinessRuleValidationException;
+    Reserve createReserve(Date dateIn, String state, Date dateOut) throws BussinessRuleValidationException;
 }

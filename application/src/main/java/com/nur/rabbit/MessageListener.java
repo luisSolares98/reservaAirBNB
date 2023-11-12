@@ -1,5 +1,6 @@
 package com.nur.rabbit;
 
+import com.nur.model.Publication;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     @RabbitListener(queues = Config.QUEUE)
-    public void listener(CustomMessage message) {
+    public void listener(Publication message) {
         System.out.println(message);
     }
 

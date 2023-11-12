@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class CheckOutJapModel {
+
     @Id
     @Column(nullable = false)
     private UUID id;
@@ -25,4 +26,5 @@ public class CheckOutJapModel {
 
     @Column(nullable = false)
     private String typeCheckOut;
+
 }

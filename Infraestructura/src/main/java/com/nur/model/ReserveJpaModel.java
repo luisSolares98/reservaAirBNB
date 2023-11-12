@@ -14,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class ReserveJpaModel {
+
     @Id
     @Column(nullable = false)
     private UUID id;
@@ -30,7 +31,4 @@ public class ReserveJpaModel {
     @NotNull(message = "el estado no puede ser null")
     private String state;
 
-    @Column(nullable = false)
-    @NotNull(message = "el publishID no puede ser null")
-    private UUID publishID;
 }

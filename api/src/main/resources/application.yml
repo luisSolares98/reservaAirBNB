@@ -20,7 +20,7 @@ spring:
     show-sql: true
     defer-datasource-initialization: true
     hibernate:
-        ddl-auto: create-drop
+        ddl-auto: update
 
 spring-doc:
   swagger-ui:

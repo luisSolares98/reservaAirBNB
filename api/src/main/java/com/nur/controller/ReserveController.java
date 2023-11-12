@@ -4,10 +4,8 @@ import an.awesome.pipelinr.Pipeline;
 import com.nur.command.reserve.create.CreateReserveCommand;
 import com.nur.command.reserve.get.GetReserveCommand;
 import com.nur.dtos.ReserveDTO;
-import com.nur.exceptions.InvalidDataException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

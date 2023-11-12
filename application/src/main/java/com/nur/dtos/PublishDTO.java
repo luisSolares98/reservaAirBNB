@@ -1,28 +1,19 @@
 package com.nur.dtos;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.UUID;
-
 @Getter
 @Setter
 @Builder
 @ToString
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ReserveDTO {
-
-    private String reserveID;
-
-    private Date dateIn;
-
-    private String state;
-
-    private Date dateOut;
+public class PublishDTO {
+    private String ID;
 
     private String publishID;
 
@@ -30,4 +21,5 @@ public class ReserveDTO {
 
     private String userID;
 
+    private String reserveID;
 }
