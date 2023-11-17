@@ -21,10 +21,8 @@ public class RabbitController {
 
     @PostMapping("/")
     public String publishMessage(@RequestBody CustomMessage message) {
-        message.setMessageId(UUID.randomUUID().toString());
-        message.setMessageDate(new Date());
-        template.convertAndSend(Config.EXCHANGE,
-                Config.ROUTING_KEY, message);
+        message.setId(UUID.randomUUID());
+        template.convertAndSend(Config.EXCHANGE, message);
 
         return "Message Published";
     }

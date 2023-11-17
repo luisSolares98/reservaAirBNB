@@ -12,6 +12,7 @@ import com.nur.factories.reserve.ReserveFactory;
 import com.nur.model.Publication;
 import com.nur.model.Reserve;
 import com.nur.rabbit.Config;
+import com.nur.rabbit.CustomMessage;
 import com.nur.respositories.IPublicationRepository;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;
@@ -50,9 +51,13 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
 
             Publication publication = publicationFactory.createPublication(UUID.fromString(createReserveCommand.reserveDTO.getPublishID()),reserveID, createReserveCommand.reserveDTO.getAmount(), UUID.fromString(createReserveCommand.reserveDTO.getUserID()) );
             publicationRepository.update(publication);
+
+            CustomMessage message = CustomMessage.builder().id(UUID.fromString(createReserveCommand.reserveDTO.getUserID()))
+                    .message("The Reserve was successfully created").build();
+
             // Reddis notify
             template.convertAndSend(Config.EXCHANGE,
-                    Config.ROUTING_KEY, publication);
+                    Config.ROUTING_KEY, message);
 
             return ReserveInMapper.from(reserve);
         } catch (BussinessRuleValidationException ex) {

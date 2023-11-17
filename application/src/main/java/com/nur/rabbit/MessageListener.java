@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     @RabbitListener(queues = Config.QUEUE)
-    public void listener(Publication message) {
+    public void listener(CustomMessage message) {
         System.out.println(message);
     }
 
