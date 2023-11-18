@@ -13,6 +13,8 @@ import com.nur.model.Publication;
 import com.nur.model.Reserve;
 import com.nur.rabbit.Config;
 import com.nur.rabbit.CustomMessage;
+import com.nur.rabbit.Pattern;
+import com.nur.rabbit.Response;
 import com.nur.respositories.IPublicationRepository;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;
@@ -52,12 +54,21 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
             Publication publication = publicationFactory.createPublication(UUID.fromString(createReserveCommand.reserveDTO.getPublishID()),reserveID, createReserveCommand.reserveDTO.getAmount(), UUID.fromString(createReserveCommand.reserveDTO.getUserID()) );
             publicationRepository.update(publication);
 
+            Pattern pattern = Pattern.builder().cmd(Config.EXCHANGE).build();
+
             CustomMessage message = CustomMessage.builder().id(UUID.fromString(createReserveCommand.reserveDTO.getUserID()))
                     .message("The Reserve was successfully created").build();
 
+            Response response = Response.builder().data(message).pattern(pattern).build();
             // Reddis notify
-            template.convertAndSend(Config.EXCHANGE,
-                    Config.ROUTING_KEY, message);
+            template.convertAndSend(Config.EXCHANGE, response);
+
+            pattern.setCmd(Config.EXCHANGE2);
+            CustomMessage message2 = CustomMessage.builder().id(publication.getPublicationID())
+                    .message("The Reserve was successfully created").build();
+            response.setData(message2);
+            // Reddis notify
+            template.convertAndSend(Config.EXCHANGE2, response);
 
             return ReserveInMapper.from(reserve);
         } catch (BussinessRuleValidationException ex) {
