@@ -29,16 +29,20 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
 
 
     private final IReserveRepository reserveRepository;
+
     private final IReserveFactory reserveFactory;
 
-    @Autowired
     private IPublicationRepository publicationRepository;
+
     private final IPublicationFactory publicationFactory;
+
     @Autowired
     private RabbitTemplate template;
 
-    public CreateReserveHandler(IReserveRepository reserveRepository) {
+    @Autowired
+    public CreateReserveHandler(IReserveRepository reserveRepository, IPublicationRepository publicationRepository) {
         this.reserveRepository = reserveRepository;
+        this.publicationRepository = publicationRepository;
         this.reserveFactory = new ReserveFactory();
         this.publicationFactory = new PublicationFactory();
     }
@@ -60,6 +64,8 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
                     .message("The Reserve was successfully created").build();
 
             Response response = Response.builder().data(message).pattern(pattern).build();
+            // String jsonPayload = objectMapper.writeValueAsString(response);
+
             // Reddis notify
             template.convertAndSend(Config.EXCHANGE, response);
 

@@ -6,8 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
+@Getter
 @ToString
 public class Publication extends AggregateRoot {
     private BigDecimal amount;

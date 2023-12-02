@@ -4,10 +4,10 @@ import com.nur.core.BussinessRuleValidationException;
 import com.nur.exceptions.InvalidDataException;
 import com.nur.model.Reserve;
 import com.nur.model.ReserveJpaModel;
-import com.nur.valueobjects.NullRule;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class ReserveUtils {
     public static List<ReserveJpaModel> reserveJpaModelList(
@@ -32,6 +32,6 @@ public class ReserveUtils {
         if (jpaModel == null) {
             throw new InvalidDataException("Data Not Found");
         }
-        return new Reserve(jpaModel.getId(),jpaModel.getDateIn(), jpaModel.getState(), jpaModel.getDateOut());
+        return new Reserve(jpaModel.getId(),jpaModel.getDateIn(), jpaModel.getState(), jpaModel.getDateOut(), UUID.fromString("effa368e-2f33-49c7-94e4-a4dfb3be2c28"));
     }
 }
