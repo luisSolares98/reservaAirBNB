@@ -32,7 +32,7 @@ public class GetPublishHandler implements Command.Handler<GetPublishCommand, Lis
     @Override
     public List<Publication> handle(GetPublishCommand command) {
         try{
-            List<Publication> list = publicationRepository.getByUserID(
+            List<Publication> list = this.publicationRepository.getByUserID(
                     UUID.fromString(command.getUserID())
             );
             return list;

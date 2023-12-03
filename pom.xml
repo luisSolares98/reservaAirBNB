@@ -117,6 +117,8 @@
 						<exclude>com/nur/dtos/*</exclude>
 						<exclude>com/nur/exceptions/*</exclude>
 						<exclude>com/nur/Main.class</exclude>
+						<exclude>com/nur/rabbit/*</exclude>
+						<exclude>com/nur/controller/RabbitController.class</exclude>
 					</excludes>
 				</configuration>
 				<executions>
