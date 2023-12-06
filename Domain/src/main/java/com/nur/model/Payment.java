@@ -3,12 +3,11 @@ package com.nur.model;
 import com.nur.core.AggregateRoot;
 import com.nur.core.BussinessRuleValidationException;
 import com.nur.valueObject.NotNegative;
-import lombok.Getter;
-import lombok.ToString;
 
 import java.util.UUID;
+
+import lombok.Getter;
 @Getter
-@ToString
 public class Payment extends AggregateRoot {
     private String statePayment;
     private NotNegative payments;
