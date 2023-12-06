@@ -1,0 +1,6 @@
+# SonarQube server configuration
+sonar:
+  organization: luissolares98
+  projectKey: luisSolares98_reservaAirBNB
+  # JaCoCo coverage report location
+  source: .
