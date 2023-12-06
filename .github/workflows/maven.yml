@@ -30,7 +30,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@develop
+      uses: SonarSource/sonarcloud-github-action@master
       with:
         projectBaseDir: api/
       env:
