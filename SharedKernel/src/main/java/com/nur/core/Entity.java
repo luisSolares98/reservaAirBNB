@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-public abstract class Entity{
+public abstract class Entity {
     public UUID key;
     public List<DomainEvent> domainEvents;
 

@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public class BussinessRuleValidationException extends Exception {
-    public BussinessRule brokenRule;
-    public String details;
+    private BussinessRule brokenRule;
+    private final String details;
 
     public BussinessRuleValidationException(String message, String details) {
         super(message);
@@ -19,6 +19,6 @@ public class BussinessRuleValidationException extends Exception {
     @Override
     public String toString() {
         String name = this.brokenRule == null ? "BussinessRule" : this.brokenRule.getClass().getName();
-        return name + ':' + this.details;
+        return name + ":" + this.details;
     }
 }
