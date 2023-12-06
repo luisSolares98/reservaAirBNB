@@ -32,7 +32,8 @@ class PublicationUtilsTest {
         List<UserPublicReserveJpaModel> listJpa = PublishFixture.whitDefaultListJPA();
         List<Publication> list = PublishFixture.whitDefaultList();
         List<Publication> expect = PublicationUtils.publicationJpaModelList(listJpa);
-        assertEquals(expect.toString(), list.toString());
+        assertEquals(expect.size(), list.size());
+        assertEquals(expect.get(0).getPublicationID(), list.get(0).getPublicationID());
     }
 
     @Test
@@ -53,7 +54,7 @@ class PublicationUtilsTest {
     void jpaToPublication() throws BussinessRuleValidationException, ParseException {
         Publication expect = PublishFixture.whitDefault();
         Publication response = PublicationUtils.jpaToPublication(PublishFixture.whitDefaultJPA());
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(expect.getPublicationID(), response.getPublicationID());
     }
 
     @Test

@@ -1,8 +1,8 @@
 package com.nur.command.reserve.create;
 
-import an.awesome.pipelinr.Command;
-import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
+
+import an.awesome.pipelinr.Command;
 
 
 public class CreateReserveCommand implements Command<ReserveDTO> {

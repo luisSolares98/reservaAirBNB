@@ -19,7 +19,7 @@ public class Reserve extends Entity {
     private Date dateOut;
 
 
-    public Reserve(UUID key, Date dateIn, String state, Date dateOut, UUID uuid) throws BussinessRuleValidationException{
+    public Reserve(UUID key, Date dateIn, String state, Date dateOut, UUID uuid) {
         this.key = key;
         this.dateIn = dateIn;
         this.state = state;

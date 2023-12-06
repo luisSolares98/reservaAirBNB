@@ -2,12 +2,14 @@ package com.nur.dtos;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.UUID;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter

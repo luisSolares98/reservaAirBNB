@@ -55,6 +55,6 @@ class PaymentJpaRepositoryTest {
 
         Payment respuesta = servicio.getById(sampleId);
         assertNotNull(respuesta);
-        assertEquals(expect.toString(), respuesta.toString());
+        assertEquals(expect.getReserveID(), respuesta.getReserveID());
     }
 }

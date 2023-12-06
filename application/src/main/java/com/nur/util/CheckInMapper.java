@@ -1,8 +1,8 @@
 package com.nur.util;
 
-import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.CheckInDTO;
 import com.nur.model.CheckIn;
+
 import java.util.UUID;
 
 public class CheckInMapper {
@@ -16,8 +16,7 @@ public class CheckInMapper {
                 .build();
     }
 
-    public static CheckIn from(CheckInDTO checkInDTO)
-            throws BussinessRuleValidationException {
+    public static CheckIn from(CheckInDTO checkInDTO) {
         return new CheckIn(checkInDTO.getDateTimeCheckIn(), checkInDTO.getTypeCheckIn(), UUID.fromString(checkInDTO.getReserveId()) );
     }
 }

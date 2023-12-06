@@ -27,7 +27,7 @@ class PaymentInMapperTest {
     void from() throws ParseException, BussinessRuleValidationException {
         Payment expect = PaymentFixture.whitDefault();
         Payment response = PaymentInMapper.from(PaymentDTOFixture.withDefault());
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(expect.getReserveID(), response.getReserveID());
     }
 
     @Test

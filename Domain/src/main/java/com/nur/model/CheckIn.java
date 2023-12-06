@@ -1,13 +1,12 @@
 package com.nur.model;
 
 import com.nur.core.AggregateRoot;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Date;
 import java.util.UUID;
+
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @ToString

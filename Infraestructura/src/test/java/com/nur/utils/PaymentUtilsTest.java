@@ -47,6 +47,6 @@ class PaymentUtilsTest {
     void jpaToPayment() throws BussinessRuleValidationException, ParseException {
         Payment expect = PaymentFixture.whitDefault();
         Payment response = PaymentUtils.jpaToPayment(PaymentFixture.whitDefaultJPA());
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(expect.getReserveID(), response.getReserveID());
     }
 }

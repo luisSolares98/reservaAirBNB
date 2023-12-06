@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
-@ToString
 public class Publication extends AggregateRoot {
     private BigDecimal amount;
 
@@ -23,8 +22,8 @@ public class Publication extends AggregateRoot {
         this.reserveID = reserveID;
         this.userID = userID;
     }
-    public Publication(UUID ID, BigDecimal amount, UUID publicationID, UUID reserveID, UUID userID) {
-        this.key = ID;
+    public Publication(UUID uuid, BigDecimal amount, UUID publicationID, UUID reserveID, UUID userID) {
+        this.key = uuid;
         this.amount = amount;
         this.publicationID = publicationID;
         this.reserveID = reserveID;

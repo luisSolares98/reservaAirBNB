@@ -5,7 +5,6 @@ import com.nur.core.BussinessRuleValidationException;
 import com.nur.model.Reserve;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class ReserveFactory implements IReserveFactory{
     @Override

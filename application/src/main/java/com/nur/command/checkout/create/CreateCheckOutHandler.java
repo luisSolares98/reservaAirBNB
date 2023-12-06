@@ -1,7 +1,5 @@
 package com.nur.command.checkout.create;
 
-import an.awesome.pipelinr.Command;
-import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.CheckOutDTO;
 import com.nur.exceptions.InvalidDataException;
 import com.nur.factories.checkout.CheckOutFactory;
@@ -9,8 +7,12 @@ import com.nur.factories.checkout.ICheckOutFactory;
 import com.nur.model.CheckOut;
 import com.nur.respositories.ICheckOutRepository;
 import com.nur.util.CheckOutMapper;
+
 import org.springframework.stereotype.Component;
+
 import java.util.UUID;
+
+import an.awesome.pipelinr.Command;
 
 @Component
 public class CreateCheckOutHandler implements Command.Handler<CreateCheckOutCommand, CheckOutDTO> {

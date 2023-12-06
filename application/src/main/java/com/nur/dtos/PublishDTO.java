@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PublishDTO {
-    private String ID;
+    private String id;
 
     private String publishID;
 

@@ -4,7 +4,6 @@ import com.nur.core.BussinessRuleValidationException;
 import com.nur.exceptions.InvalidDataException;
 import com.nur.model.Payment;
 import com.nur.model.PaymentJapModel;
-import com.nur.valueobjects.NullRule;
 
 import java.util.Collections;
 import java.util.List;

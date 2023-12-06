@@ -8,12 +8,11 @@ import com.nur.model.ReserveJpaModel;
 import com.nur.repositories.reserve.IReserveCrudRepository;
 import com.nur.respositories.ICheckInRepository;
 import com.nur.utils.CheckInUtils;
-
 import com.nur.utils.ReserveUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.UUID;
 
 @Service

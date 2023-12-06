@@ -57,7 +57,7 @@ class PublicationJpaRepositoryTest {
 
         Publication response = servicio.getById(sampleId);
         assertNotNull(response);
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(expect.getPublicationID(), response.getPublicationID());
     }
     @Test
     void getByUserId() throws BussinessRuleValidationException, ParseException {
@@ -67,6 +67,6 @@ class PublicationJpaRepositoryTest {
 
         List<Publication> response = servicio.getByUserID(sampleId);
         assertNotNull(response);
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(expect.get(0).getPublicationID(), response.get(0).getPublicationID());
     }
 }

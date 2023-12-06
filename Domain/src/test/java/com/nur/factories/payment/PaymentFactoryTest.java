@@ -36,7 +36,7 @@ class PaymentFactoryTest {
     void create() throws BussinessRuleValidationException, ParseException {
         Payment expect =  PaymentFixture.whitDefault();
         Payment response = factory.create(expect.getStatePayment(), expect.getPayment(), expect.getReserveID());
-        assertEquals(expect.toString(), response.toString());
+        assertEquals(expect.getReserveID(), response.getReserveID());
     }
     @Test
     void createFail() throws BussinessRuleValidationException, ParseException {

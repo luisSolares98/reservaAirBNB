@@ -1,7 +1,5 @@
 package com.nur.command.reserve.create;
 
-import an.awesome.pipelinr.Command;
-import com.nur.core.BussinessRule;
 import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
 import com.nur.exceptions.InvalidDataException;
@@ -18,11 +16,14 @@ import com.nur.rabbit.Response;
 import com.nur.respositories.IPublicationRepository;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;
+
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+
+import an.awesome.pipelinr.Command;
 
 @Component
 public class CreateReserveHandler implements Command.Handler<CreateReserveCommand, ReserveDTO> {
@@ -64,7 +65,6 @@ public class CreateReserveHandler implements Command.Handler<CreateReserveComman
                     .message("The Reserve was successfully created").build();
 
             Response response = Response.builder().data(message).pattern(pattern).build();
-            // String jsonPayload = objectMapper.writeValueAsString(response);
 
             // Reddis notify
             template.convertAndSend(Config.EXCHANGE, response);

@@ -2,7 +2,7 @@ package com.nur.exceptions;
 
 public class InvalidDataException  extends RuntimeException{
     private static final long serialVersionUID = 1L;
-    String metodo;
+    private String metodo;
     public InvalidDataException(String message) {
         super(message);
         this.fillMethod();
@@ -16,5 +16,8 @@ public class InvalidDataException  extends RuntimeException{
             String methodName = var10000 + ":" + caller.getLineNumber();
             metodo = className + ":" + methodName;
         }
+    }
+    public String getMetodo() {
+        return this.metodo;
     }
 }

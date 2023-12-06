@@ -15,7 +15,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler
     protected ResponseEntity<ErrorResponse> handleException(InvalidDataException ex) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        return buildResponseEntity(status, new RuntimeException(ex.getMessage()), ex.metodo);
+        return buildResponseEntity(status, new RuntimeException(ex.getMessage()), ex.getMetodo());
     }
     @ExceptionHandler
     protected ResponseEntity<ErrorResponse> handleException(BussinessRuleValidationException ex) {
