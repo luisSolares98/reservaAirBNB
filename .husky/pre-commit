@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+echo "archivo"
 archivos_cambiados=$(git diff --name-only)
 for archivo in $archivos_cambiados; do
   echo "archivo"
