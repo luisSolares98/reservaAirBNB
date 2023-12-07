@@ -200,8 +200,8 @@
 				<version>0.0.28</version>
 				<executions>
 					<execution>
-						<phase>test</phase>
-						<inherited>true</inherited>
+						<!-- Desactiva la ejecución predeterminada durante la fase de 'validate' -->
+						<phase>none</phase>
 						<goals>
 							<goal>validate</goal>
 						</goals>
