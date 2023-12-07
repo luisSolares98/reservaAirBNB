@@ -5,3 +5,5 @@ for archivo in $archivos_cambiados; do
     echo "archivo"
     mvn spring-javaformat:apply -Dspring-javaformat.glob=$archivo
 done
+
+git add .
