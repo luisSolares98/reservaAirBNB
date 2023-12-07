@@ -1,1 +1,1 @@
-mvn spring-javaformat:apply
+mvn spring-javaformat:validate

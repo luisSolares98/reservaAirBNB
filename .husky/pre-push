@@ -1,0 +1,9 @@
+mvn spring-javaformat:apply
+
+git status
+
+git add .
+
+git commit -m "formant husky"
+
+git push
