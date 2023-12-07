@@ -15,4 +15,4 @@ public class CheckInMapper { public static CheckInDTO from(CheckIn checkIn) {
 	public static CheckIn from(CheckInDTO checkInDTO) {
 		return new CheckIn(checkInDTO.getDateTimeCheckIn(), checkInDTO.getTypeCheckIn(),
 				UUID.fromString(checkInDTO.getReserveId()));
-	}   }
+	}  }
