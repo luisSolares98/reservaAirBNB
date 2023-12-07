@@ -4,3 +4,4 @@ public interface BussinessRule {
     boolean isValid();
     String message();
 }
+
