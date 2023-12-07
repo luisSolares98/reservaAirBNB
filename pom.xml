@@ -110,31 +110,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>io.github.dathin</groupId>
-				<artifactId>jhusky</artifactId>
-				<version>1.0.9</version>
-				<executions>
-					<execution>
-						<id>add-jhusky</id>
-						<goals>
-							<goal>add</goal>
-						</goals>
-						<configuration>
-							<hooks>
-								<pre-commit>
-									<![CDATA[
-									#!/bin/sh
-									echo "Ejecutando el script pre-commit"
-									# Aquí puedes agregar los comandos que desees ejecutar en el pre-commit
-									npm run precommit
-									]]>
-								</pre-commit>
-							</hooks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.7</version>
