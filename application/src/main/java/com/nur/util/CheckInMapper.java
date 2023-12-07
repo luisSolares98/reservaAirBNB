@@ -17,3 +17,5 @@ public class CheckInMapper { public static CheckInDTO from(CheckIn checkIn) {
 				UUID.fromString(checkInDTO.getReserveId()));
 	}    }
 
+
+
