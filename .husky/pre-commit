@@ -3,6 +3,6 @@
 archivos_cambiados=$(git diff --name-only)
 echo archivos_cambiados
 for archivo in $archivos_cambiados; do
-  echo "archivo"
+    echo "archivo"
     mvn spring-javaformat:apply -Dspring-javaformat.glob=$archivo
 done
