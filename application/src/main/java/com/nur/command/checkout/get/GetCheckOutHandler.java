@@ -15,23 +15,26 @@ import java.util.UUID;
 
 @Component
 public class GetCheckOutHandler implements Command.Handler<GetCheckOutCommand, CheckOutDTO> {
-    private final ICheckOutRepository checkOutRepository;
-    private final ICheckOutFactory checkOutFactory;
 
-    public GetCheckOutHandler(ICheckOutRepository checkOutRepository) {
-        this.checkOutRepository = checkOutRepository;
-        this.checkOutFactory = new CheckOutFactory();
-    }
+	private final ICheckOutRepository checkOutRepository;
 
-    @SneakyThrows
-    @Override
-    public CheckOutDTO handle(GetCheckOutCommand getCheckOutCommand) {
-        try{
-            CheckOut check = checkOutRepository.getById(UUID.fromString(getCheckOutCommand.getCheck()));
-            return CheckOutMapper.from(check);
-        } catch (Exception ex) {
-            throw new InvalidDataException(ex.getMessage());
-        }
-    }
+	private final ICheckOutFactory checkOutFactory;
+
+	public GetCheckOutHandler(ICheckOutRepository checkOutRepository) {
+		this.checkOutRepository = checkOutRepository;
+		this.checkOutFactory = new CheckOutFactory();
+	}
+
+	@SneakyThrows
+	@Override
+	public CheckOutDTO handle(GetCheckOutCommand getCheckOutCommand) {
+		try {
+			CheckOut check = checkOutRepository.getById(UUID.fromString(getCheckOutCommand.getCheck()));
+			return CheckOutMapper.from(check);
+		}
+		catch (Exception ex) {
+			throw new InvalidDataException(ex.getMessage());
+		}
+	}
 
 }

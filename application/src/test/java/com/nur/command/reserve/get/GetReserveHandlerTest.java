@@ -23,30 +23,35 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GetReserveHandlerTest {
-    @Mock
-    IReserveRepository repository;
-    @Spy
-    IReserveFactory factory;
 
-    @Mock
-    GetReserveHandler service;
-    @BeforeEach
-    void setUp() {
-        service = new GetReserveHandler(repository);
-    }
+	@Mock
+	IReserveRepository repository;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        when(repository.getById(any(UUID.class))).thenReturn(ReserveFixture.whitDefault());
-        ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
-        GetReserveCommand command = new GetReserveCommand(ReserveDTOFixture.withDefaultResponse().getReserveID());
-        ReserveDTO respuesta = service.handle(command);
+	@Spy
+	IReserveFactory factory;
 
-        assertEquals(expect.getReserveID(), respuesta.getReserveID());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        GetReserveCommand command = new GetReserveCommand(null);
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+	@Mock
+	GetReserveHandler service;
+
+	@BeforeEach
+	void setUp() {
+		service = new GetReserveHandler(repository);
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		when(repository.getById(any(UUID.class))).thenReturn(ReserveFixture.whitDefault());
+		ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
+		GetReserveCommand command = new GetReserveCommand(ReserveDTOFixture.withDefaultResponse().getReserveID());
+		ReserveDTO respuesta = service.handle(command);
+
+		assertEquals(expect.getReserveID(), respuesta.getReserveID());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		GetReserveCommand command = new GetReserveCommand(null);
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }

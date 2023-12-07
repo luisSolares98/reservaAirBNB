@@ -8,18 +8,22 @@ import java.util.UUID;
 
 @Getter
 public abstract class Entity {
-    public UUID key;
-    public List<DomainEvent> domainEvents;
 
-    protected Entity() {
-        this.key = UUID.randomUUID();
-        this.domainEvents = new ArrayList<>();
-    }
+	public UUID key;
 
-    public void addDomainEvents(DomainEvent event) {
-        this.domainEvents.add(event);
-    }
-    protected void setKey(UUID key) {
-        this.key = key;
-    }
+	public List<DomainEvent> domainEvents;
+
+	protected Entity() {
+		this.key = UUID.randomUUID();
+		this.domainEvents = new ArrayList<>();
+	}
+
+	public void addDomainEvents(DomainEvent event) {
+		this.domainEvents.add(event);
+	}
+
+	protected void setKey(UUID key) {
+		this.key = key;
+	}
+
 }

@@ -1,4 +1,5 @@
 package com.nur.controller;
+
 import an.awesome.pipelinr.Pipeline;
 import com.nur.command.reserve.create.CreateReserveCommand;
 import com.nur.command.reserve.get.GetReserveCommand;
@@ -17,29 +18,33 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ReserveControllerTest {
-    @Mock
-    Pipeline pipeline;
-    @Mock
-    ReserveController controller;
-    @BeforeEach
-    void setUp() {
-        controller = new ReserveController(pipeline);
-    }
 
-    @Test
-    void createReserve() throws ParseException {
-        ReserveDTO model = ReserveDTOFixture.withDefault();
-        ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
-        Mockito.when(pipeline.send(any(CreateReserveCommand.class))).thenReturn(expect);
-        ReserveDTO response = controller.createReserve(model);
-        Assertions.assertEquals(response, expect);
-    }
+	@Mock
+	Pipeline pipeline;
 
-    @Test
-    void getReserve() throws ParseException {
-        ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
-        Mockito.when(pipeline.send(any(GetReserveCommand.class))).thenReturn(expect);
-        ReserveDTO response = controller.getReserve("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
-        Assertions.assertEquals(response, expect);
-    }
+	@Mock
+	ReserveController controller;
+
+	@BeforeEach
+	void setUp() {
+		controller = new ReserveController(pipeline);
+	}
+
+	@Test
+	void createReserve() throws ParseException {
+		ReserveDTO model = ReserveDTOFixture.withDefault();
+		ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
+		Mockito.when(pipeline.send(any(CreateReserveCommand.class))).thenReturn(expect);
+		ReserveDTO response = controller.createReserve(model);
+		Assertions.assertEquals(response, expect);
+	}
+
+	@Test
+	void getReserve() throws ParseException {
+		ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
+		Mockito.when(pipeline.send(any(GetReserveCommand.class))).thenReturn(expect);
+		ReserveDTO response = controller.getReserve("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
+		Assertions.assertEquals(response, expect);
+	}
+
 }

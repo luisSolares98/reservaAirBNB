@@ -19,47 +19,49 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 class PublicationUtilsTest {
 
-    @Mock
-    PublicationUtils utils;
+	@Mock
+	PublicationUtils utils;
 
-    @BeforeEach
-    void setUp() {
-        utils = new PublicationUtils();
-    }
+	@BeforeEach
+	void setUp() {
+		utils = new PublicationUtils();
+	}
 
-    @Test
-    void publicationJpaModelList() throws BussinessRuleValidationException, ParseException {
-        List<UserPublicReserveJpaModel> listJpa = PublishFixture.whitDefaultListJPA();
-        List<Publication> list = PublishFixture.whitDefaultList();
-        List<Publication> expect = PublicationUtils.publicationJpaModelList(listJpa);
-        assertEquals(expect.size(), list.size());
-        assertEquals(expect.get(0).getPublicationID(), list.get(0).getPublicationID());
-    }
+	@Test
+	void publicationJpaModelList() throws BussinessRuleValidationException, ParseException {
+		List<UserPublicReserveJpaModel> listJpa = PublishFixture.whitDefaultListJPA();
+		List<Publication> list = PublishFixture.whitDefaultList();
+		List<Publication> expect = PublicationUtils.publicationJpaModelList(listJpa);
+		assertEquals(expect.size(), list.size());
+		assertEquals(expect.get(0).getPublicationID(), list.get(0).getPublicationID());
+	}
 
-    @Test
-    void publicationJpaModelListNull() throws BussinessRuleValidationException, ParseException {
-        List<Publication> expect = PublicationUtils.publicationJpaModelList(null);
-        assertNotNull(expect);
-    }
+	@Test
+	void publicationJpaModelListNull() throws BussinessRuleValidationException, ParseException {
+		List<Publication> expect = PublicationUtils.publicationJpaModelList(null);
+		assertNotNull(expect);
+	}
 
-    @Test
-    void publicationToJpaEntity() throws BussinessRuleValidationException, ParseException {
-        UserPublicReserveJpaModel expect = PublishFixture.whitDefaultJPA();
-        UserPublicReserveJpaModel response = PublicationUtils.publicationToJpaEntity(PublishFixture.whitDefaultAll());
-        assertEquals(expect.toString(), response.toString());
+	@Test
+	void publicationToJpaEntity() throws BussinessRuleValidationException, ParseException {
+		UserPublicReserveJpaModel expect = PublishFixture.whitDefaultJPA();
+		UserPublicReserveJpaModel response = PublicationUtils.publicationToJpaEntity(PublishFixture.whitDefaultAll());
+		assertEquals(expect.toString(), response.toString());
 
-    }
+	}
 
-    @Test
-    void jpaToPublication() throws BussinessRuleValidationException, ParseException {
-        Publication expect = PublishFixture.whitDefault();
-        Publication response = PublicationUtils.jpaToPublication(PublishFixture.whitDefaultJPA());
-        assertEquals(expect.getPublicationID(), response.getPublicationID());
-    }
+	@Test
+	void jpaToPublication() throws BussinessRuleValidationException, ParseException {
+		Publication expect = PublishFixture.whitDefault();
+		Publication response = PublicationUtils.jpaToPublication(PublishFixture.whitDefaultJPA());
+		assertEquals(expect.getPublicationID(), response.getPublicationID());
+	}
 
-    @Test
-    void jpaToPublicationNull() throws BussinessRuleValidationException {
-        InvalidDataException exception = assertThrows(InvalidDataException.class, () -> PublicationUtils.jpaToPublication(null)) ;
-        assertEquals("Data Not Found", exception.getMessage());
-    }
+	@Test
+	void jpaToPublicationNull() throws BussinessRuleValidationException {
+		InvalidDataException exception = assertThrows(InvalidDataException.class,
+				() -> PublicationUtils.jpaToPublication(null));
+		assertEquals("Data Not Found", exception.getMessage());
+	}
+
 }

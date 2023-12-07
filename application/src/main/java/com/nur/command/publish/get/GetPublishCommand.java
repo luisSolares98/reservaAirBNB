@@ -9,9 +9,11 @@ import lombok.Getter;
 
 @Getter
 public class GetPublishCommand implements Command<List<Publication>> {
-    String userID;
 
-    public GetPublishCommand(String userID) {
-        this.userID = userID;
-    }
+	String userID;
+
+	public GetPublishCommand(String userID) {
+		this.userID = userID;
+	}
+
 }

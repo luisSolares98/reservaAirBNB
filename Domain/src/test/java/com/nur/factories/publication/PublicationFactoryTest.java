@@ -17,32 +17,37 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class PublicationFactoryTest {
 
-    @Mock
-    PublicationFactory publicationFactory;
+	@Mock
+	PublicationFactory publicationFactory;
 
-    @Spy
-    IPublicationFactory iPublicationFactory;
-    @BeforeEach
-    void setUp() {
-        this.publicationFactory  = new PublicationFactory();
-    }
+	@Spy
+	IPublicationFactory iPublicationFactory;
 
-    @Test
-    void createPublication() throws BussinessRuleValidationException, ParseException {
-        Publication expect = PublicationFixture.whitDefault();
+	@BeforeEach
+	void setUp() {
+		this.publicationFactory = new PublicationFactory();
+	}
 
-        Publication response = publicationFactory.createPublication(expect.getPublicationID(), expect.getReserveID(), expect.getAmount(), expect.getUserID());
-        assertEquals(expect.getPublicationID(), response.getPublicationID());
-    }
+	@Test
+	void createPublication() throws BussinessRuleValidationException, ParseException {
+		Publication expect = PublicationFixture.whitDefault();
 
-    @Test
-    void createPublicationAll() throws BussinessRuleValidationException, ParseException {
-        Publication expect = PublicationFixture.whitDefaultAll();
+		Publication response = publicationFactory.createPublication(expect.getPublicationID(), expect.getReserveID(),
+				expect.getAmount(), expect.getUserID());
+		assertEquals(expect.getPublicationID(), response.getPublicationID());
+	}
 
-        Publication response = publicationFactory.createPublication(expect.getPublicationID(), expect.getReserveID(), expect.getAmount(), expect.getUserID());
-        assertEquals(expect.getPublicationID(), response.getPublicationID());
-    }
+	@Test
+	void createPublicationAll() throws BussinessRuleValidationException, ParseException {
+		Publication expect = PublicationFixture.whitDefaultAll();
+
+		Publication response = publicationFactory.createPublication(expect.getPublicationID(), expect.getReserveID(),
+				expect.getAmount(), expect.getUserID());
+		assertEquals(expect.getPublicationID(), response.getPublicationID());
+	}
+
 }

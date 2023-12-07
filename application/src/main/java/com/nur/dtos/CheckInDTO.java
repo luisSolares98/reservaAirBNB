@@ -13,8 +13,12 @@ import lombok.ToString;
 @ToString
 public class CheckInDTO {
 
-    private String checkInId;
-    private String reserveId;
-    private Date dateTimeCheckIn;
-    private String typeCheckIn;
+	private String checkInId;
+
+	private String reserveId;
+
+	private Date dateTimeCheckIn;
+
+	private String typeCheckIn;
+
 }

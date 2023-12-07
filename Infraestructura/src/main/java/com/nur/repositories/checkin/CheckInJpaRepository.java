@@ -17,28 +17,29 @@ import java.util.UUID;
 
 @Service
 public class CheckInJpaRepository implements ICheckInRepository {
-    @Autowired
-    private ICheckInCrudRepository repository;
-    @Autowired
-    private IReserveCrudRepository reserveCrudRepository;
 
-    @Override
-    public UUID update(CheckIn checkIn) throws BussinessRuleValidationException {
-        CheckInJapModel model = CheckInUtils.checkInToJpaEntity(checkIn);
+	@Autowired
+	private ICheckInCrudRepository repository;
 
-        Reserve reserve =ReserveUtils.jpaToreserva(
-            reserveCrudRepository.findById(model.getReserveID()).orElse(null)
-        );
+	@Autowired
+	private IReserveCrudRepository reserveCrudRepository;
 
-        reserve.setState("In Progress");
-        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
-        reserveJpaModel.setId(model.getReserveID());
-        reserveCrudRepository.save(reserveJpaModel);
-        return repository.save(model).getId();
-    }
+	@Override
+	public UUID update(CheckIn checkIn) throws BussinessRuleValidationException {
+		CheckInJapModel model = CheckInUtils.checkInToJpaEntity(checkIn);
 
-    @Override
-    public CheckIn getById(UUID id) throws BussinessRuleValidationException {
-        return CheckInUtils.jpaToCheckIn(repository.findById(id).orElse(null));
-    }
+		Reserve reserve = ReserveUtils.jpaToreserva(reserveCrudRepository.findById(model.getReserveID()).orElse(null));
+
+		reserve.setState("In Progress");
+		ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
+		reserveJpaModel.setId(model.getReserveID());
+		reserveCrudRepository.save(reserveJpaModel);
+		return repository.save(model).getId();
+	}
+
+	@Override
+	public CheckIn getById(UUID id) throws BussinessRuleValidationException {
+		return CheckInUtils.jpaToCheckIn(repository.findById(id).orElse(null));
+	}
+
 }

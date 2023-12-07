@@ -7,9 +7,11 @@ import lombok.Getter;
 
 @Getter
 public class GetPaymentCommand implements Command<PaymentDTO> {
-    String paymen;
 
-    public GetPaymentCommand(String paymen) {
-        this.paymen = paymen;
-    }
+	String paymen;
+
+	public GetPaymentCommand(String paymen) {
+		this.paymen = paymen;
+	}
+
 }

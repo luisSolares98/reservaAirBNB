@@ -12,27 +12,29 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+
 @Component
 public class GetReserveHandler implements Command.Handler<GetReserveCommand, ReserveDTO> {
-    private final IReserveRepository reserveRepository;
-    private final IReserveFactory reserveFactory;
 
-    public GetReserveHandler(IReserveRepository reserveRepository) {
-        this.reserveRepository = reserveRepository;
-        this.reserveFactory = new ReserveFactory();
-    }
+	private final IReserveRepository reserveRepository;
 
-    @SneakyThrows
-    @Override
-    public ReserveDTO handle(GetReserveCommand createReserveCommand) {
-        try{
-            Reserve reserve = reserveRepository.getById(
-                    UUID.fromString(createReserveCommand.getReserveID())
-            );
-            return ReserveInMapper.from(reserve);
-        } catch (Exception ex) {
-            throw new InvalidDataException(ex.getMessage());
-        }
-    }
+	private final IReserveFactory reserveFactory;
+
+	public GetReserveHandler(IReserveRepository reserveRepository) {
+		this.reserveRepository = reserveRepository;
+		this.reserveFactory = new ReserveFactory();
+	}
+
+	@SneakyThrows
+	@Override
+	public ReserveDTO handle(GetReserveCommand createReserveCommand) {
+		try {
+			Reserve reserve = reserveRepository.getById(UUID.fromString(createReserveCommand.getReserveID()));
+			return ReserveInMapper.from(reserve);
+		}
+		catch (Exception ex) {
+			throw new InvalidDataException(ex.getMessage());
+		}
+	}
 
 }

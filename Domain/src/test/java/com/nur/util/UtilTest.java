@@ -7,11 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 public class UtilTest {
-    public static Date parseToDate(String fecha) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        return formatter.parse(fecha);
-    }
-    public static List listVoid () {
-        return Collections.emptyList();
-    }
+
+	public static Date parseToDate(String fecha) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		return formatter.parse(fecha);
+	}
+
+	public static List listVoid() {
+		return Collections.emptyList();
+	}
+
 }

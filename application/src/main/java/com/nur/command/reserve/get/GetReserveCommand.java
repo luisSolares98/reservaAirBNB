@@ -6,9 +6,11 @@ import lombok.Getter;
 
 @Getter
 public class GetReserveCommand implements Command<ReserveDTO> {
-    String reserveID;
 
-    public GetReserveCommand(String reserveID) {
-        this.reserveID = reserveID;
-    }
+	String reserveID;
+
+	public GetReserveCommand(String reserveID) {
+		this.reserveID = reserveID;
+	}
+
 }

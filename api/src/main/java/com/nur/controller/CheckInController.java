@@ -11,20 +11,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/checkIn")
 public class CheckInController {
 
-    final Pipeline pipeline;
-    @Autowired
-    public CheckInController(Pipeline pipeline) {
-        this.pipeline = pipeline;
-    }
+	final Pipeline pipeline;
 
-    @PostMapping("/")
-    public CheckInDTO create(@RequestBody CheckInDTO checkInDto) {
-        CreateCheckInCommand assignSeatCommand = new CreateCheckInCommand(checkInDto);
-        return assignSeatCommand.execute(pipeline);
-    }
-    @GetMapping("/{idCheckIn}")
-    public CheckInDTO get(@PathVariable String idCheckIn) {
-        GetCheckInCommand assignSeatCommand = new GetCheckInCommand(idCheckIn);
-        return assignSeatCommand.execute(pipeline);
-    }
+	@Autowired
+	public CheckInController(Pipeline pipeline) {
+		this.pipeline = pipeline;
+	}
+
+	@PostMapping("/")
+	public CheckInDTO create(@RequestBody CheckInDTO checkInDto) {
+		CreateCheckInCommand assignSeatCommand = new CreateCheckInCommand(checkInDto);
+		return assignSeatCommand.execute(pipeline);
+	}
+
+	@GetMapping("/{idCheckIn}")
+	public CheckInDTO get(@PathVariable String idCheckIn) {
+		GetCheckInCommand assignSeatCommand = new GetCheckInCommand(idCheckIn);
+		return assignSeatCommand.execute(pipeline);
+	}
+
 }

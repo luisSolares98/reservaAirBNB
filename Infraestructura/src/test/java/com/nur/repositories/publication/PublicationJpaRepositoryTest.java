@@ -21,52 +21,55 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class PublicationJpaRepositoryTest {
-    @InjectMocks
-    PublicationJpaRepository servicio;
 
-    @Spy
-    IPublicationCrudRepository publicationCrudRepository;
+	@InjectMocks
+	PublicationJpaRepository servicio;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+	@Spy
+	IPublicationCrudRepository publicationCrudRepository;
 
+	@BeforeEach
+	void setUp() {
+		MockitoAnnotations.openMocks(this);
+	}
 
-    @Test
-    void updateReserve() throws BussinessRuleValidationException, ParseException {
-        Publication publication = PublishFixture.whitDefault();
-        UUID sampleId = UUID.randomUUID();
+	@Test
+	void updateReserve() throws BussinessRuleValidationException, ParseException {
+		Publication publication = PublishFixture.whitDefault();
+		UUID sampleId = UUID.randomUUID();
 
-        Mockito.when(publicationCrudRepository.save(any(UserPublicReserveJpaModel.class))).thenAnswer(invocation -> {
-            UserPublicReserveJpaModel savedModel = invocation.getArgument(0);
-            savedModel.setId(sampleId); // Assign a UUID or an appropriate ID here
-            return savedModel;
-        });
-        UUID respuesta = servicio.update(publication);
-        assertNotNull(respuesta);
-        assertEquals(sampleId, respuesta);
+		Mockito.when(publicationCrudRepository.save(any(UserPublicReserveJpaModel.class))).thenAnswer(invocation -> {
+			UserPublicReserveJpaModel savedModel = invocation.getArgument(0);
+			savedModel.setId(sampleId); // Assign a UUID or an appropriate ID here
+			return savedModel;
+		});
+		UUID respuesta = servicio.update(publication);
+		assertNotNull(respuesta);
+		assertEquals(sampleId, respuesta);
 
-    }
+	}
 
-    @Test
-    void getById() throws BussinessRuleValidationException, ParseException {
-        Publication expect = PublishFixture.whitDefault();
-        UUID sampleId = UUID.randomUUID();
-        Mockito.when(publicationCrudRepository.findById(sampleId)).thenReturn(Optional.of(PublishFixture.whitDefaultJPA()));
+	@Test
+	void getById() throws BussinessRuleValidationException, ParseException {
+		Publication expect = PublishFixture.whitDefault();
+		UUID sampleId = UUID.randomUUID();
+		Mockito.when(publicationCrudRepository.findById(sampleId))
+				.thenReturn(Optional.of(PublishFixture.whitDefaultJPA()));
 
-        Publication response = servicio.getById(sampleId);
-        assertNotNull(response);
-        assertEquals(expect.getPublicationID(), response.getPublicationID());
-    }
-    @Test
-    void getByUserId() throws BussinessRuleValidationException, ParseException {
-        List<Publication> expect = PublishFixture.whitDefaultList();
-        UUID sampleId = UUID.randomUUID();
-        Mockito.when(publicationCrudRepository.listByUserId(sampleId)).thenReturn(PublishFixture.whitDefaultListJPA());
+		Publication response = servicio.getById(sampleId);
+		assertNotNull(response);
+		assertEquals(expect.getPublicationID(), response.getPublicationID());
+	}
 
-        List<Publication> response = servicio.getByUserID(sampleId);
-        assertNotNull(response);
-        assertEquals(expect.get(0).getPublicationID(), response.get(0).getPublicationID());
-    }
+	@Test
+	void getByUserId() throws BussinessRuleValidationException, ParseException {
+		List<Publication> expect = PublishFixture.whitDefaultList();
+		UUID sampleId = UUID.randomUUID();
+		Mockito.when(publicationCrudRepository.listByUserId(sampleId)).thenReturn(PublishFixture.whitDefaultListJPA());
+
+		List<Publication> response = servicio.getByUserID(sampleId);
+		assertNotNull(response);
+		assertEquals(expect.get(0).getPublicationID(), response.get(0).getPublicationID());
+	}
+
 }

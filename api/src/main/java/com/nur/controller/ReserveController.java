@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/reserve")
 public class ReserveController {
 
-    final Pipeline pipeline;
-    @Autowired
-    public ReserveController(Pipeline pipeline) {
-        this.pipeline = pipeline;
-    }
+	final Pipeline pipeline;
 
-    @PostMapping("/")
-    public ReserveDTO createReserve(@Valid @RequestBody ReserveDTO reserveDTO) {
-        CreateReserveCommand assignSeatCommand = new CreateReserveCommand(reserveDTO);
-        return assignSeatCommand.execute(pipeline);
-    }
-    @GetMapping("/{idReserve}")
-    public ReserveDTO getReserve(@Valid @PathVariable String idReserve) {
-        GetReserveCommand assignSeatCommand = new GetReserveCommand(idReserve);
-        return assignSeatCommand.execute(pipeline);
-    }
+	@Autowired
+	public ReserveController(Pipeline pipeline) {
+		this.pipeline = pipeline;
+	}
+
+	@PostMapping("/")
+	public ReserveDTO createReserve(@Valid @RequestBody ReserveDTO reserveDTO) {
+		CreateReserveCommand assignSeatCommand = new CreateReserveCommand(reserveDTO);
+		return assignSeatCommand.execute(pipeline);
+	}
+
+	@GetMapping("/{idReserve}")
+	public ReserveDTO getReserve(@Valid @PathVariable String idReserve) {
+		GetReserveCommand assignSeatCommand = new GetReserveCommand(idReserve);
+		return assignSeatCommand.execute(pipeline);
+	}
+
 }

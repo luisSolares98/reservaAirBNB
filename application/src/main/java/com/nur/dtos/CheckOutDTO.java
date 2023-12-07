@@ -9,8 +9,13 @@ import java.util.Date;
 @Setter
 @ToString
 public class CheckOutDTO {
-    private String checkOutId;
-    private String reserveId;
-    private Date dateTimeCheckOut;
-    private String typeCheckOut;
+
+	private String checkOutId;
+
+	private String reserveId;
+
+	private Date dateTimeCheckOut;
+
+	private String typeCheckOut;
+
 }

@@ -17,28 +17,29 @@ import an.awesome.pipelinr.Command;
 @Component
 public class CreateCheckInHandler implements Command.Handler<CreateCheckInCommand, CheckInDTO> {
 
+	private final ICheckInRepository checkInRepository;
 
-    private final ICheckInRepository checkInRepository;
-    private final ICheckInFactory checkInFactory;
+	private final ICheckInFactory checkInFactory;
 
+	public CreateCheckInHandler(ICheckInRepository reserveRepository) {
+		this.checkInRepository = reserveRepository;
+		this.checkInFactory = new CheckInFactory();
+	}
 
-    public CreateCheckInHandler(ICheckInRepository reserveRepository) {
-        this.checkInRepository = reserveRepository;
-        this.checkInFactory = new CheckInFactory();
-    }
+	@Override
+	public CheckInDTO handle(CreateCheckInCommand createCheckInCommand) {
+		CheckIn checkIn = null;
+		try {
+			checkIn = checkInFactory.create(createCheckInCommand.checkInDTO.getDateTimeCheckIn(),
+					createCheckInCommand.checkInDTO.getTypeCheckIn(),
+					UUID.fromString(createCheckInCommand.checkInDTO.getReserveId()));
 
-
-    @Override
-    public CheckInDTO handle(CreateCheckInCommand createCheckInCommand) {
-        CheckIn checkIn = null;
-        try {
-            checkIn = checkInFactory.create(createCheckInCommand.checkInDTO.getDateTimeCheckIn(), createCheckInCommand.checkInDTO.getTypeCheckIn(), UUID.fromString(createCheckInCommand.checkInDTO.getReserveId()));
-
-            checkInRepository.update(checkIn);
-            return CheckInMapper.from(checkIn);
-        } catch (Exception ex) {
-            throw new InvalidDataException(ex.getMessage());
-        }
-    }
+			checkInRepository.update(checkIn);
+			return CheckInMapper.from(checkIn);
+		}
+		catch (Exception ex) {
+			throw new InvalidDataException(ex.getMessage());
+		}
+	}
 
 }

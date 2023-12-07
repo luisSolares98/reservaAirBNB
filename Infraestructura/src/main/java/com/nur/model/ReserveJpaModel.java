@@ -15,20 +15,20 @@ import java.util.UUID;
 @ToString
 public class ReserveJpaModel {
 
-    @Id
-    @Column(nullable = false)
-    private UUID id;
+	@Id
+	@Column(nullable = false)
+	private UUID id;
 
-    @Column(nullable = false)
-    @NotNull(message = "la fecha de ingreso no puede ser null")
-    private Date dateIn;
+	@Column(nullable = false)
+	@NotNull(message = "la fecha de ingreso no puede ser null")
+	private Date dateIn;
 
-    @Column(nullable = false)
-    @NotNull(message = "la fecha de salida no puede ser null")
-    private Date dateOut;
+	@Column(nullable = false)
+	@NotNull(message = "la fecha de salida no puede ser null")
+	private Date dateOut;
 
-    @Column(nullable = false)
-    @NotNull(message = "el estado no puede ser null")
-    private String state;
+	@Column(nullable = false)
+	@NotNull(message = "el estado no puede ser null")
+	private String state;
 
 }

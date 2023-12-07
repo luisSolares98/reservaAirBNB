@@ -6,7 +6,9 @@ import com.nur.model.CheckOut;
 import java.util.UUID;
 
 public interface ICheckOutRepository {
-    UUID update(CheckOut checkOut) throws BussinessRuleValidationException;
 
-    CheckOut getById(UUID id) throws BussinessRuleValidationException;
+	UUID update(CheckOut checkOut) throws BussinessRuleValidationException;
+
+	CheckOut getById(UUID id) throws BussinessRuleValidationException;
+
 }

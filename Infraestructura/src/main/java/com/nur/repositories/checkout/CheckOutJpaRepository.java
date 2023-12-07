@@ -9,28 +9,31 @@ import com.nur.utils.ReserveUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
+
 @Service
 public class CheckOutJpaRepository implements ICheckOutRepository {
-    @Autowired
-    private ICheckOutCrudRepository repository;
-    @Autowired
-    private IReserveCrudRepository reserveCrudRepository;
-    @Override
-    public UUID update(CheckOut checkOut) throws BussinessRuleValidationException {
-        CheckOutJapModel model = CheckOutUtils.checkOutToJpaEntity(checkOut);
-        Reserve reserve = ReserveUtils.jpaToreserva(
-            reserveCrudRepository.findById(model.getReserveID()).orElse(null)
-        );
 
-        reserve.setState("Finalized");
-        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
-        reserveJpaModel.setId(model.getReserveID());
-        reserveCrudRepository.save(reserveJpaModel);
-        return repository.save(model).getId();
-    }
+	@Autowired
+	private ICheckOutCrudRepository repository;
 
-    @Override
-    public CheckOut getById(UUID id) throws BussinessRuleValidationException {
-       return CheckOutUtils.jpaToCheckOut(repository.findById(id).orElse(null));
-    }
+	@Autowired
+	private IReserveCrudRepository reserveCrudRepository;
+
+	@Override
+	public UUID update(CheckOut checkOut) throws BussinessRuleValidationException {
+		CheckOutJapModel model = CheckOutUtils.checkOutToJpaEntity(checkOut);
+		Reserve reserve = ReserveUtils.jpaToreserva(reserveCrudRepository.findById(model.getReserveID()).orElse(null));
+
+		reserve.setState("Finalized");
+		ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
+		reserveJpaModel.setId(model.getReserveID());
+		reserveCrudRepository.save(reserveJpaModel);
+		return repository.save(model).getId();
+	}
+
+	@Override
+	public CheckOut getById(UUID id) throws BussinessRuleValidationException {
+		return CheckOutUtils.jpaToCheckOut(repository.findById(id).orElse(null));
+	}
+
 }

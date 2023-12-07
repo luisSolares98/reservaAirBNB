@@ -1,6 +1,5 @@
 package com.nur.rabbit;
 
-
 import lombok.*;
 
 import java.util.UUID;
@@ -12,7 +11,8 @@ import java.util.UUID;
 @ToString
 public class CustomMessage {
 
-    private UUID id;
-    private String message;
+	private UUID id;
+
+	private String message;
 
 }

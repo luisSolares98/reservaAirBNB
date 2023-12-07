@@ -11,20 +11,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/checkOut")
 public class CheckOutController {
 
-    final Pipeline pipeline;
-    @Autowired
-    public CheckOutController(Pipeline pipeline) {
-        this.pipeline = pipeline;
-    }
+	final Pipeline pipeline;
 
-    @PostMapping("/")
-    public CheckOutDTO create(@RequestBody CheckOutDTO check) {
-        CreateCheckOutCommand assignSeatCommand = new CreateCheckOutCommand(check);
-        return assignSeatCommand.execute(pipeline);
-    }
-    @GetMapping("/{idCheck}")
-    public CheckOutDTO get(@PathVariable String idCheck) {
-        GetCheckOutCommand assignSeatCommand = new GetCheckOutCommand(idCheck);
-        return assignSeatCommand.execute(pipeline);
-    }
+	@Autowired
+	public CheckOutController(Pipeline pipeline) {
+		this.pipeline = pipeline;
+	}
+
+	@PostMapping("/")
+	public CheckOutDTO create(@RequestBody CheckOutDTO check) {
+		CreateCheckOutCommand assignSeatCommand = new CreateCheckOutCommand(check);
+		return assignSeatCommand.execute(pipeline);
+	}
+
+	@GetMapping("/{idCheck}")
+	public CheckOutDTO get(@PathVariable String idCheck) {
+		GetCheckOutCommand assignSeatCommand = new GetCheckOutCommand(idCheck);
+		return assignSeatCommand.execute(pipeline);
+	}
+
 }

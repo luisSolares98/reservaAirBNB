@@ -6,5 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public interface ICheckOutFactory {
-  CheckOut create(Date dateTimeCheckOut, String typeCheckOut, UUID reserveID) throws BussinessRuleValidationException;
+
+	CheckOut create(Date dateTimeCheckOut, String typeCheckOut, UUID reserveID) throws BussinessRuleValidationException;
+
 }

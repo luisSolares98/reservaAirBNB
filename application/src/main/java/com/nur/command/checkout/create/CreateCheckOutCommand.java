@@ -4,8 +4,11 @@ import an.awesome.pipelinr.Command;
 import com.nur.dtos.CheckOutDTO;
 
 public class CreateCheckOutCommand implements Command<CheckOutDTO> {
-    CheckOutDTO checkOutDTO;
-    public CreateCheckOutCommand(CheckOutDTO checkOutDTO) {
-        this.checkOutDTO = checkOutDTO;
-    }
+
+	CheckOutDTO checkOutDTO;
+
+	public CreateCheckOutCommand(CheckOutDTO checkOutDTO) {
+		this.checkOutDTO = checkOutDTO;
+	}
+
 }

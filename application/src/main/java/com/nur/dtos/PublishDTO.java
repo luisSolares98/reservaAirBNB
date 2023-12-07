@@ -7,19 +7,22 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Builder
 @ToString
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PublishDTO {
-    private String id;
 
-    private String publishID;
+	private String id;
 
-    private BigDecimal amount;
+	private String publishID;
 
-    private String userID;
+	private BigDecimal amount;
 
-    private String reserveID;
+	private String userID;
+
+	private String reserveID;
+
 }

@@ -21,33 +21,38 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class GetCheckOutHandlerTest {
 
-    @Mock
-    ICheckOutRepository repository;
-    @Spy
-    ICheckOutFactory factory;
+	@Mock
+	ICheckOutRepository repository;
 
-    @Mock
-    GetCheckOutHandler service;
-    @BeforeEach
-    void setUp() {
-        service = new GetCheckOutHandler(repository);
-    }
+	@Spy
+	ICheckOutFactory factory;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        when(repository.getById(any(UUID.class))).thenReturn(CheckOutFixture.whitDefault());
-        CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
-        GetCheckOutCommand command = new GetCheckOutCommand(CheckInDTOFixture.withDefaultResponse().getCheckInId());
-        CheckOutDTO respuesta = service.handle(command);
+	@Mock
+	GetCheckOutHandler service;
 
-        assertEquals(expect.getCheckOutId(), respuesta.getCheckOutId());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        GetCheckOutCommand command = new GetCheckOutCommand(null);
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+	@BeforeEach
+	void setUp() {
+		service = new GetCheckOutHandler(repository);
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		when(repository.getById(any(UUID.class))).thenReturn(CheckOutFixture.whitDefault());
+		CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
+		GetCheckOutCommand command = new GetCheckOutCommand(CheckInDTOFixture.withDefaultResponse().getCheckInId());
+		CheckOutDTO respuesta = service.handle(command);
+
+		assertEquals(expect.getCheckOutId(), respuesta.getCheckOutId());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		GetCheckOutCommand command = new GetCheckOutCommand(null);
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }

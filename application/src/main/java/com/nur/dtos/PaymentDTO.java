@@ -10,8 +10,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PaymentDTO {
-    private String paymentId;
-    private String statePayment;
-    private float payment;
-    private String reserveID;
+
+	private String paymentId;
+
+	private String statePayment;
+
+	private float payment;
+
+	private String reserveID;
+
 }

@@ -7,12 +7,12 @@ import lombok.Getter;
 
 @Getter
 public class NotNegative extends ValueObject {
-    private final float payment;
 
+	private final float payment;
 
-    public NotNegative(float payment) throws BussinessRuleValidationException {
-        CheckRule(new NotNegativeRule(payment));
-        this.payment = payment;
-    }
+	public NotNegative(float payment) throws BussinessRuleValidationException {
+		CheckRule(new NotNegativeRule(payment));
+		this.payment = payment;
+	}
 
 }

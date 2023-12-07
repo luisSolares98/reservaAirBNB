@@ -16,32 +16,32 @@ import java.util.UUID;
 
 @Service
 public class ReserveJpaRepository implements IReserveRepository {
-    @Autowired
-    private IReserveCrudRepository reserveCrudRepository;
-    @Override
-    public List<Reserve> getAll() throws BussinessRuleValidationException {
-        List<ReserveJpaModel> jpaModels = reserveCrudRepository.findAll();
-        List<Reserve> baggages = new ArrayList<>();
-        if (jpaModels.isEmpty()) return Collections.emptyList();
-        for (ReserveJpaModel reserveJpaModel : jpaModels) {
-            baggages.add(ReserveUtils.jpaToreserva(reserveJpaModel));
-        }
-        return baggages;
-    }
 
-    @Override
-    public UUID updateReserve(Reserve reserve) {
-        ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
-        return reserveCrudRepository.save(reserveJpaModel).getId();
-    }
+	@Autowired
+	private IReserveCrudRepository reserveCrudRepository;
 
-    @Override
-    public Reserve getById(UUID id) throws BussinessRuleValidationException {
+	@Override
+	public List<Reserve> getAll() throws BussinessRuleValidationException {
+		List<ReserveJpaModel> jpaModels = reserveCrudRepository.findAll();
+		List<Reserve> baggages = new ArrayList<>();
+		if (jpaModels.isEmpty())
+			return Collections.emptyList();
+		for (ReserveJpaModel reserveJpaModel : jpaModels) {
+			baggages.add(ReserveUtils.jpaToreserva(reserveJpaModel));
+		}
+		return baggages;
+	}
 
-            return ReserveUtils.jpaToreserva(
-                    reserveCrudRepository.findById(id).orElse(null)
-            );
-    }
+	@Override
+	public UUID updateReserve(Reserve reserve) {
+		ReserveJpaModel reserveJpaModel = ReserveUtils.reservaToJpaEntity(reserve);
+		return reserveCrudRepository.save(reserveJpaModel).getId();
+	}
 
+	@Override
+	public Reserve getById(UUID id) throws BussinessRuleValidationException {
+
+		return ReserveUtils.jpaToreserva(reserveCrudRepository.findById(id).orElse(null));
+	}
 
 }

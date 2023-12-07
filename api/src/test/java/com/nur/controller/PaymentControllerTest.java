@@ -19,29 +19,32 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 class PaymentControllerTest {
 
-    @Mock
-    Pipeline pipeline;
-    @Mock
-    PaymentController controller;
-    @BeforeEach
-    void setUp() {
-        controller = new PaymentController(pipeline);
-    }
+	@Mock
+	Pipeline pipeline;
 
-    @Test
-    void create() throws ParseException {
-        PaymentDTO model = PaymentDTOFixture.withDefault();
-        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
-        Mockito.when(pipeline.send(any(CreatePaymentCommand.class))).thenReturn(expect);
-        PaymentDTO response = controller.create(model);
-        Assertions.assertEquals(response, expect);
-    }
+	@Mock
+	PaymentController controller;
 
-    @Test
-    void get() throws ParseException {
-        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
-        Mockito.when(pipeline.send(any(GetPaymentCommand.class))).thenReturn(expect);
-        PaymentDTO response = controller.get("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
-        Assertions.assertEquals(response, expect);
-    }
+	@BeforeEach
+	void setUp() {
+		controller = new PaymentController(pipeline);
+	}
+
+	@Test
+	void create() throws ParseException {
+		PaymentDTO model = PaymentDTOFixture.withDefault();
+		PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+		Mockito.when(pipeline.send(any(CreatePaymentCommand.class))).thenReturn(expect);
+		PaymentDTO response = controller.create(model);
+		Assertions.assertEquals(response, expect);
+	}
+
+	@Test
+	void get() throws ParseException {
+		PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+		Mockito.when(pipeline.send(any(GetPaymentCommand.class))).thenReturn(expect);
+		PaymentDTO response = controller.get("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
+		Assertions.assertEquals(response, expect);
+	}
+
 }

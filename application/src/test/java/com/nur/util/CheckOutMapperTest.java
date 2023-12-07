@@ -13,38 +13,42 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class CheckOutMapperTest {
 
-    @Mock
-    CheckOutMapper mapper;
-    @BeforeEach
-    void setUp() {
-        mapper = new CheckOutMapper();
-    }
+	@Mock
+	CheckOutMapper mapper;
 
-    @Test
-    void from() throws ParseException, BussinessRuleValidationException {
-        CheckOut expect = CheckOutFixture.whitDefault();
-        CheckOut response = CheckOutMapper.from(CheckOutDTOFixture.withDefault());
-        assertEquals(expect.toString(), response.toString());
-    }
+	@BeforeEach
+	void setUp() {
+		mapper = new CheckOutMapper();
+	}
 
-    @Test
-    void testFromNull() {
-        CheckOutDTO expect = CheckOutDTO.builder().build();
-        CheckOutDTO response = CheckOutMapper.from((CheckOut) null);
-        assertEquals(expect.toString(), response.toString());
-    }
-    @Test
-    void testFrom() throws BussinessRuleValidationException, ParseException {
-        CheckOut example = CheckOutFixture.whitDefault();
-        CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
-        expect.setCheckOutId(expect.getCheckOutId());
-        expect.setTypeCheckOut(expect.getTypeCheckOut());
-        expect.setReserveId(expect.getReserveId());
-        expect.setDateTimeCheckOut(expect.getDateTimeCheckOut());
-        CheckOutDTO response = CheckOutMapper.from(example);
-        assertEquals(expect.toString(), response.toString());
-    }
+	@Test
+	void from() throws ParseException, BussinessRuleValidationException {
+		CheckOut expect = CheckOutFixture.whitDefault();
+		CheckOut response = CheckOutMapper.from(CheckOutDTOFixture.withDefault());
+		assertEquals(expect.toString(), response.toString());
+	}
+
+	@Test
+	void testFromNull() {
+		CheckOutDTO expect = CheckOutDTO.builder().build();
+		CheckOutDTO response = CheckOutMapper.from((CheckOut) null);
+		assertEquals(expect.toString(), response.toString());
+	}
+
+	@Test
+	void testFrom() throws BussinessRuleValidationException, ParseException {
+		CheckOut example = CheckOutFixture.whitDefault();
+		CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
+		expect.setCheckOutId(expect.getCheckOutId());
+		expect.setTypeCheckOut(expect.getTypeCheckOut());
+		expect.setReserveId(expect.getReserveId());
+		expect.setDateTimeCheckOut(expect.getDateTimeCheckOut());
+		CheckOutDTO response = CheckOutMapper.from(example);
+		assertEquals(expect.toString(), response.toString());
+	}
+
 }

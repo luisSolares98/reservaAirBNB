@@ -8,9 +8,9 @@ import java.util.Date;
 
 public class DateDiferent extends ValueObject {
 
-    public DateDiferent(Date dateIn, Date dateOut ) throws BussinessRuleValidationException {
-        CheckRule(new DateRule(dateIn,  dateOut));
+	public DateDiferent(Date dateIn, Date dateOut) throws BussinessRuleValidationException {
+		CheckRule(new DateRule(dateIn, dateOut));
 
-    }
+	}
 
 }

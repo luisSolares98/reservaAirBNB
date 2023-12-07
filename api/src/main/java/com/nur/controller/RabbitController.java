@@ -18,21 +18,21 @@ import java.util.UUID;
 @RequestMapping("/publish")
 public class RabbitController {
 
-    @Autowired
-    private RabbitTemplate template;
+	@Autowired
+	private RabbitTemplate template;
 
-    @PostMapping("/")
-    public String publishMessage(@RequestBody CustomMessage message) {
+	@PostMapping("/")
+	public String publishMessage(@RequestBody CustomMessage message) {
 
-        Pattern pattern = Pattern.builder().cmd(Config.EXCHANGE).build();
+		Pattern pattern = Pattern.builder().cmd(Config.EXCHANGE).build();
 
-        CustomMessage message2 = CustomMessage.builder().id(UUID.randomUUID())
-                .message(message.getMessage()).build();
+		CustomMessage message2 = CustomMessage.builder().id(UUID.randomUUID()).message(message.getMessage()).build();
 
-        Response response = Response.builder().data(message2).pattern(pattern).build();
+		Response response = Response.builder().data(message2).pattern(pattern).build();
 
-        template.convertAndSend(Config.EXCHANGE, response);
+		template.convertAndSend(Config.EXCHANGE, response);
 
-        return "Message Published";
-    }
+		return "Message Published";
+	}
+
 }

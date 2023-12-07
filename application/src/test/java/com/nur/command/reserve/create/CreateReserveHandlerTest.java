@@ -25,51 +25,55 @@ import static org.mockito.ArgumentMatchers.anyString;
 @ExtendWith(MockitoExtension.class)
 class CreateReserveHandlerTest {
 
-    @Mock
-    IReserveRepository repository;
-    @Spy
-    IReserveFactory factory;
+	@Mock
+	IReserveRepository repository;
 
-    @InjectMocks
-    CreateReserveHandler service;
+	@Spy
+	IReserveFactory factory;
 
-    @Mock
-    IPublicationRepository publicationRepository;
+	@InjectMocks
+	CreateReserveHandler service;
 
-    @Mock
-    IPublicationFactory publicationFactory;
+	@Mock
+	IPublicationRepository publicationRepository;
 
+	@Mock
+	IPublicationFactory publicationFactory;
 
-    @Mock
-    RabbitTemplate template;
+	@Mock
+	RabbitTemplate template;
 
-    @BeforeEach
-    void setUp() {
-        service = new CreateReserveHandler(repository, publicationRepository);
-        MockitoAnnotations.openMocks(this);
+	@BeforeEach
+	void setUp() {
+		service = new CreateReserveHandler(repository, publicationRepository);
+		MockitoAnnotations.openMocks(this);
 
-    }
+	}
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
-        CreateReserveCommand command = new CreateReserveCommand(ReserveDTOFixture.withDefaultResponse());
-        //Mockito.when(publicationFactory.createPublication(any(), any(),any(),any())).thenReturn(PublicationFixture.whitDefault());
-        Mockito.doNothing().when(template).convertAndSend(anyString(), (Object) any());
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
+		CreateReserveCommand command = new CreateReserveCommand(ReserveDTOFixture.withDefaultResponse());
+		// Mockito.when(publicationFactory.createPublication(any(),
+		// any(),any(),any())).thenReturn(PublicationFixture.whitDefault());
+		Mockito.doNothing().when(template).convertAndSend(anyString(), (Object) any());
 
-        ReserveDTO respuesta = service.handle(command);
-        assertEquals(expect.getDateIn(), respuesta.getDateIn());
-        assertEquals(expect.getDateOut(), respuesta.getDateOut());
-        assertEquals(expect.getState(), respuesta.getState());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        CreateReserveCommand command = new CreateReserveCommand(null);
-        assertThrows(NullPointerException.class, () -> service.handle(command)) ;
-    }
-    @Test
-    void handleErrorFecha() throws ParseException, BussinessRuleValidationException {
-        CreateReserveCommand command = new CreateReserveCommand(ReserveDTOFixture.whitDefaultFail());
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+		ReserveDTO respuesta = service.handle(command);
+		assertEquals(expect.getDateIn(), respuesta.getDateIn());
+		assertEquals(expect.getDateOut(), respuesta.getDateOut());
+		assertEquals(expect.getState(), respuesta.getState());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		CreateReserveCommand command = new CreateReserveCommand(null);
+		assertThrows(NullPointerException.class, () -> service.handle(command));
+	}
+
+	@Test
+	void handleErrorFecha() throws ParseException, BussinessRuleValidationException {
+		CreateReserveCommand command = new CreateReserveCommand(ReserveDTOFixture.whitDefaultFail());
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }

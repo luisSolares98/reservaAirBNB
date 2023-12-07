@@ -14,17 +14,17 @@ import java.util.UUID;
 @ToString
 public class CheckInJapModel {
 
-    @Id
-    @Column(nullable = false)
-    private UUID id;
+	@Id
+	@Column(nullable = false)
+	private UUID id;
 
-    @Column(nullable = false)
-    private Date dateTimeCheckIn;
+	@Column(nullable = false)
+	private Date dateTimeCheckIn;
 
-    @Column(nullable = false)
-    private UUID reserveID;
+	@Column(nullable = false)
+	private UUID reserveID;
 
-    @Column(nullable = false)
-    private String typeCheckIn;
+	@Column(nullable = false)
+	private String typeCheckIn;
 
 }

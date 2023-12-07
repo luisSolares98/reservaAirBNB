@@ -16,15 +16,17 @@ import java.util.List;
 @RequestMapping("/publish")
 public class PublishController {
 
-    final Pipeline pipeline;
-    @Autowired
-    public PublishController(Pipeline pipeline) {
-        this.pipeline = pipeline;
-    }
+	final Pipeline pipeline;
 
-    @GetMapping("/users/{userId}")
-    public List<Publication> getPublish(@Valid @PathVariable String userId) {
-        GetPublishCommand assignSeatCommand = new GetPublishCommand(userId);
-        return assignSeatCommand.execute(pipeline);
-    }
+	@Autowired
+	public PublishController(Pipeline pipeline) {
+		this.pipeline = pipeline;
+	}
+
+	@GetMapping("/users/{userId}")
+	public List<Publication> getPublish(@Valid @PathVariable String userId) {
+		GetPublishCommand assignSeatCommand = new GetPublishCommand(userId);
+		return assignSeatCommand.execute(pipeline);
+	}
+
 }

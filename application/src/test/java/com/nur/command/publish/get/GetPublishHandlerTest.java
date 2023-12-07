@@ -31,32 +31,35 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GetPublishHandlerTest {
-    @Mock
-    IPublicationRepository repository;
-    @Spy
-    IPublicationFactory factory;
 
-    @Mock
-    GetPublishHandler service;
+	@Mock
+	IPublicationRepository repository;
 
-    @BeforeEach
-    void setUp() {
-        service = new GetPublishHandler(repository);
-    }
+	@Spy
+	IPublicationFactory factory;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        doReturn(PublicationFixture.whitDefaultList()).when(repository).getByUserID(any(UUID.class));
-        List<Publication> expect = PublicationFixture.whitDefaultList();
-        GetPublishCommand command = new GetPublishCommand(PublicationDTOFixture.withDefaultResponse().getUserID());
-        List<Publication> respuesta = service.handle(command);
-        assertNotNull(respuesta);
-        assertEquals(expect.get(0).getPublicationID(), respuesta.get(0).getPublicationID());
-    }
+	@Mock
+	GetPublishHandler service;
 
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        GetPublishCommand command = new GetPublishCommand(null);
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+	@BeforeEach
+	void setUp() {
+		service = new GetPublishHandler(repository);
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		doReturn(PublicationFixture.whitDefaultList()).when(repository).getByUserID(any(UUID.class));
+		List<Publication> expect = PublicationFixture.whitDefaultList();
+		GetPublishCommand command = new GetPublishCommand(PublicationDTOFixture.withDefaultResponse().getUserID());
+		List<Publication> respuesta = service.handle(command);
+		assertNotNull(respuesta);
+		assertEquals(expect.get(0).getPublicationID(), respuesta.get(0).getPublicationID());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		GetPublishCommand command = new GetPublishCommand(null);
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }

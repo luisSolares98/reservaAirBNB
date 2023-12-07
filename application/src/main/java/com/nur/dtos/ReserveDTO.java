@@ -1,6 +1,5 @@
 package com.nur.dtos;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;
@@ -18,18 +17,18 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ReserveDTO {
 
-    private String reserveID;
+	private String reserveID;
 
-    private Date dateIn;
+	private Date dateIn;
 
-    private String state;
+	private String state;
 
-    private Date dateOut;
+	private Date dateOut;
 
-    private String publishID;
+	private String publishID;
 
-    private BigDecimal amount;
+	private BigDecimal amount;
 
-    private String userID;
+	private String userID;
 
 }

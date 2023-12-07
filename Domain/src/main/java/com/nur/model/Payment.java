@@ -7,24 +7,32 @@ import com.nur.valueObject.NotNegative;
 import java.util.UUID;
 
 import lombok.Getter;
+
 @Getter
 public class Payment extends AggregateRoot {
-    private String statePayment;
-    private NotNegative payments;
-    private UUID reserveID;
-    public Payment(UUID key, String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException {
-        this.key = key;
-        this.statePayment = statePayment;
-        this.payments = new NotNegative(payment);
-        this.reserveID = reserveID;
-    }
 
-    public Payment(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException {
-        this.statePayment = statePayment;
-        this.payments = new NotNegative(payment);
-        this.reserveID = reserveID;
-    }
-    public float getPayment() {
-        return payments.getPayment();
-    }
+	private String statePayment;
+
+	private NotNegative payments;
+
+	private UUID reserveID;
+
+	public Payment(UUID key, String statePayment, float payment, UUID reserveID)
+			throws BussinessRuleValidationException {
+		this.key = key;
+		this.statePayment = statePayment;
+		this.payments = new NotNegative(payment);
+		this.reserveID = reserveID;
+	}
+
+	public Payment(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException {
+		this.statePayment = statePayment;
+		this.payments = new NotNegative(payment);
+		this.reserveID = reserveID;
+	}
+
+	public float getPayment() {
+		return payments.getPayment();
+	}
+
 }

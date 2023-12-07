@@ -33,59 +33,58 @@ import io.swagger.v3.oas.annotations.info.Info;
 @SpringBootApplication()
 @EnableJpaRepositories(basePackages = { "com.nur.repositories" })
 @OpenAPIDefinition(info = @Info(title = "Domain", version = "1.0.0"))
-@EntityScan(basePackages = {"com.nur.model"})
+@EntityScan(basePackages = { "com.nur.model" })
 public class Main {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Main.class, args);
+	}
 
-    @Bean(name = "reserveRepository")
-    public IReserveRepository reserveRepository() {
-        return new ReserveJpaRepository();
-    }
+	@Bean(name = "reserveRepository")
+	public IReserveRepository reserveRepository() {
+		return new ReserveJpaRepository();
+	}
 
-    @Primary
-    @Bean(name = "publishRepository")
-    public IPublicationRepository publishRepository() {
-        return new PublicationJpaRepository();
-    }
+	@Primary
+	@Bean(name = "publishRepository")
+	public IPublicationRepository publishRepository() {
+		return new PublicationJpaRepository();
+	}
 
-    @Primary
-    @Bean(name = "checkInRepository")
-    public ICheckInRepository checkInRepository() {
-        return new CheckInJpaRepository();
-    }
+	@Primary
+	@Bean(name = "checkInRepository")
+	public ICheckInRepository checkInRepository() {
+		return new CheckInJpaRepository();
+	}
 
-    @Primary
-    @Bean(name = "checkOutRepository")
-    public ICheckOutRepository checkOutRepository() {
-        return new CheckOutJpaRepository();
-    }
-    @Primary
-    @Bean(name = "paymentRepository")
-    public IPaymentRepository paymentRepository() {
-        return new PaymentJpaRepository();
-    }
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                /// System.out.println(beanName);
-            }
-        };
-    }
-    @Bean
-    Pipeline pipeline(
-            ObjectProvider<Command.Handler> commandHandlers,
-            ObjectProvider<Notification.Handler> notificationHandlers,
-            ObjectProvider<Command.Middleware> middlewares
-    ) {
-        return new Pipelinr()
-                .with(commandHandlers::stream)
-                .with(notificationHandlers::stream)
-                .with(middlewares::orderedStream);
-    }
+	@Primary
+	@Bean(name = "checkOutRepository")
+	public ICheckOutRepository checkOutRepository() {
+		return new CheckOutJpaRepository();
+	}
+
+	@Primary
+	@Bean(name = "paymentRepository")
+	public IPaymentRepository paymentRepository() {
+		return new PaymentJpaRepository();
+	}
+
+	@Bean
+	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+		return args -> {
+			String[] beanNames = ctx.getBeanDefinitionNames();
+			Arrays.sort(beanNames);
+			for (String beanName : beanNames) {
+				/// System.out.println(beanName);
+			}
+		};
+	}
+
+	@Bean
+	Pipeline pipeline(ObjectProvider<Command.Handler> commandHandlers,
+			ObjectProvider<Notification.Handler> notificationHandlers, ObjectProvider<Command.Middleware> middlewares) {
+		return new Pipelinr().with(commandHandlers::stream).with(notificationHandlers::stream)
+				.with(middlewares::orderedStream);
+	}
+
 }

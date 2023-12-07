@@ -12,6 +12,8 @@ import java.util.UUID;
 
 @Repository
 public interface IPublicationCrudRepository extends JpaRepository<UserPublicReserveJpaModel, UUID> {
-    @Query(value = "SELECT * FROM user_public up WHERE up.userid = :userID", nativeQuery = true)
-    public List<UserPublicReserveJpaModel> listByUserId(@Param("userID") UUID userID);
+
+	@Query(value = "SELECT * FROM user_public up WHERE up.userid = :userID", nativeQuery = true)
+	public List<UserPublicReserveJpaModel> listByUserId(@Param("userID") UUID userID);
+
 }

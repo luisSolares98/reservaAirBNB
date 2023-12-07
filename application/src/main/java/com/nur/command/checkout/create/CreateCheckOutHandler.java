@@ -17,27 +17,28 @@ import an.awesome.pipelinr.Command;
 @Component
 public class CreateCheckOutHandler implements Command.Handler<CreateCheckOutCommand, CheckOutDTO> {
 
+	private final ICheckOutRepository checkOutRepository;
 
-    private final ICheckOutRepository checkOutRepository;
-    private final ICheckOutFactory checkOutFactory;
+	private final ICheckOutFactory checkOutFactory;
 
+	public CreateCheckOutHandler(ICheckOutRepository reserveRepository) {
+		this.checkOutRepository = reserveRepository;
+		this.checkOutFactory = new CheckOutFactory();
+	}
 
-    public CreateCheckOutHandler(ICheckOutRepository reserveRepository) {
-        this.checkOutRepository = reserveRepository;
-        this.checkOutFactory = new CheckOutFactory();
-    }
-
-
-    @Override
-    public CheckOutDTO handle(CreateCheckOutCommand createCheckOutCommand) {
-        CheckOut checkOut = null;
-        try {
-            checkOut = checkOutFactory.create(createCheckOutCommand.checkOutDTO.getDateTimeCheckOut(), createCheckOutCommand.checkOutDTO.getTypeCheckOut(), UUID.fromString(createCheckOutCommand.checkOutDTO.getReserveId()));
-            checkOutRepository.update(checkOut);
-            return CheckOutMapper.from(checkOut);
-        } catch (Exception ex) {
-            throw new InvalidDataException(ex.getMessage());
-        }
-    }
+	@Override
+	public CheckOutDTO handle(CreateCheckOutCommand createCheckOutCommand) {
+		CheckOut checkOut = null;
+		try {
+			checkOut = checkOutFactory.create(createCheckOutCommand.checkOutDTO.getDateTimeCheckOut(),
+					createCheckOutCommand.checkOutDTO.getTypeCheckOut(),
+					UUID.fromString(createCheckOutCommand.checkOutDTO.getReserveId()));
+			checkOutRepository.update(checkOut);
+			return CheckOutMapper.from(checkOut);
+		}
+		catch (Exception ex) {
+			throw new InvalidDataException(ex.getMessage());
+		}
+	}
 
 }

@@ -14,35 +14,40 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class CreateCheckOutHandlerTest {
 
-    @Mock
-    ICheckOutRepository repository;
-    @Spy
-    ICheckOutFactory factory;
+	@Mock
+	ICheckOutRepository repository;
 
-    @Mock
-    CreateCheckOutHandler service;
-    @BeforeEach
-    void setUp() {
-        service = new CreateCheckOutHandler(repository);
+	@Spy
+	ICheckOutFactory factory;
 
-    }
+	@Mock
+	CreateCheckOutHandler service;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
-        CreateCheckOutCommand command = new CreateCheckOutCommand(CheckOutDTOFixture.withDefaultResponse());
-        CheckOutDTO respuesta = service.handle(command);
-        assertEquals(expect.getReserveId(), respuesta.getReserveId());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
-        expect.setReserveId(null);
-        CreateCheckOutCommand command = new CreateCheckOutCommand(expect);
+	@BeforeEach
+	void setUp() {
+		service = new CreateCheckOutHandler(repository);
 
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
+		CreateCheckOutCommand command = new CreateCheckOutCommand(CheckOutDTOFixture.withDefaultResponse());
+		CheckOutDTO respuesta = service.handle(command);
+		assertEquals(expect.getReserveId(), respuesta.getReserveId());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		CheckOutDTO expect = CheckOutDTOFixture.withDefaultResponse();
+		expect.setReserveId(null);
+		CreateCheckOutCommand command = new CreateCheckOutCommand(expect);
+
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }

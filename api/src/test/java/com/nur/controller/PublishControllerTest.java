@@ -21,24 +21,23 @@ import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
 class PublishControllerTest {
 
+	@Mock
+	Pipeline pipeline;
 
-    @Mock
-    Pipeline pipeline;
+	@Mock
+	PublishController controller;
 
-    @Mock
-    PublishController controller;
+	@BeforeEach
+	void setUp() {
+		controller = new PublishController(pipeline);
+	}
 
+	@Test
+	void getPublish() throws ParseException {
+		List<Publication> expect = PublishDTOFixture.withDefault();
+		Mockito.when(pipeline.send(any(GetPublishCommand.class))).thenReturn(expect);
+		List<Publication> response = controller.getPublish("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
+		Assertions.assertEquals(response, expect);
+	}
 
-    @BeforeEach
-    void setUp() {
-        controller = new PublishController(pipeline);
-    }
-
-    @Test
-    void getPublish() throws ParseException {
-        List<Publication> expect = PublishDTOFixture.withDefault();
-        Mockito.when(pipeline.send(any(GetPublishCommand.class))).thenReturn(expect);
-        List<Publication> response = controller.getPublish("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
-        Assertions.assertEquals(response, expect);
-    }
 }

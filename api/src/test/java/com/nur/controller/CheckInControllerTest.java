@@ -22,29 +22,33 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class CheckInControllerTest {
-    @Mock
-    Pipeline pipeline;
-    @Mock
-    CheckInController controller;
-    @BeforeEach
-    void setUp() {
-        controller = new CheckInController(pipeline);
-    }
 
-    @Test
-    void create() throws ParseException {
-        CheckInDTO model = CheckInDTOFixture.withDefault();
-        CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
-        Mockito.when(pipeline.send(any(CreateCheckInCommand.class))).thenReturn(expect);
-        CheckInDTO response = controller.create(model);
-        Assertions.assertEquals(response, expect);
-    }
+	@Mock
+	Pipeline pipeline;
 
-    @Test
-    void get() throws ParseException {
-        CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
-        Mockito.when(pipeline.send(any(GetCheckInCommand.class))).thenReturn(expect);
-        CheckInDTO response = controller.get("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
-        Assertions.assertEquals(response, expect);
-    }
+	@Mock
+	CheckInController controller;
+
+	@BeforeEach
+	void setUp() {
+		controller = new CheckInController(pipeline);
+	}
+
+	@Test
+	void create() throws ParseException {
+		CheckInDTO model = CheckInDTOFixture.withDefault();
+		CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
+		Mockito.when(pipeline.send(any(CreateCheckInCommand.class))).thenReturn(expect);
+		CheckInDTO response = controller.create(model);
+		Assertions.assertEquals(response, expect);
+	}
+
+	@Test
+	void get() throws ParseException {
+		CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
+		Mockito.when(pipeline.send(any(GetCheckInCommand.class))).thenReturn(expect);
+		CheckInDTO response = controller.get("effa368e-2f33-49c7-94e4-a4dfb3be2c27");
+		Assertions.assertEquals(response, expect);
+	}
+
 }

@@ -16,22 +16,25 @@ import an.awesome.pipelinr.Command;
 
 @Component
 public class GetCheckInHandler implements Command.Handler<GetCheckInCommand, CheckInDTO> {
-    private final ICheckInRepository checkInRepository;
-    private final ICheckInFactory checkInFactory;
 
-    public GetCheckInHandler(ICheckInRepository checkInRepository) {
-        this.checkInRepository = checkInRepository;
-        this.checkInFactory = new CheckInFactory();
-    }
+	private final ICheckInRepository checkInRepository;
 
-    @Override
-    public CheckInDTO handle(GetCheckInCommand checkInCommand) {
-       try {
-            CheckIn reserve = checkInRepository.getById(UUID.fromString(checkInCommand.getCheckInID()));
-            return CheckInMapper.from(reserve);
-        } catch (Exception ex) {
-           throw new InvalidDataException(ex.getMessage());
-        }
-    }
+	private final ICheckInFactory checkInFactory;
+
+	public GetCheckInHandler(ICheckInRepository checkInRepository) {
+		this.checkInRepository = checkInRepository;
+		this.checkInFactory = new CheckInFactory();
+	}
+
+	@Override
+	public CheckInDTO handle(GetCheckInCommand checkInCommand) {
+		try {
+			CheckIn reserve = checkInRepository.getById(UUID.fromString(checkInCommand.getCheckInID()));
+			return CheckInMapper.from(reserve);
+		}
+		catch (Exception ex) {
+			throw new InvalidDataException(ex.getMessage());
+		}
+	}
 
 }

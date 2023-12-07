@@ -22,33 +22,38 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class GetPaymentHandlerTest {
 
-    @Mock
-    IPaymentRepository repository;
-    @Spy
-    IPaymentFactory factory;
+	@Mock
+	IPaymentRepository repository;
 
-    @Mock
-    GetPaymentHandler service;
-    @BeforeEach
-    void setUp() {
-        service = new GetPaymentHandler(repository);
-    }
+	@Spy
+	IPaymentFactory factory;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        when(repository.getById(any(UUID.class))).thenReturn(PaymentFixture.whitDefault());
-        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
-        GetPaymentCommand command = new GetPaymentCommand(PaymentDTOFixture.withDefaultResponse().getPaymentId());
-        PaymentDTO respuesta = service.handle(command);
+	@Mock
+	GetPaymentHandler service;
 
-        assertEquals(expect.getPaymentId(), respuesta.getPaymentId());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        GetPaymentCommand command = new GetPaymentCommand(null);
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+	@BeforeEach
+	void setUp() {
+		service = new GetPaymentHandler(repository);
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		when(repository.getById(any(UUID.class))).thenReturn(PaymentFixture.whitDefault());
+		PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+		GetPaymentCommand command = new GetPaymentCommand(PaymentDTOFixture.withDefaultResponse().getPaymentId());
+		PaymentDTO respuesta = service.handle(command);
+
+		assertEquals(expect.getPaymentId(), respuesta.getPaymentId());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		GetPaymentCommand command = new GetPaymentCommand(null);
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }
