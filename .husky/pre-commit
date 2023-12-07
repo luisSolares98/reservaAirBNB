@@ -1,5 +1,6 @@
+#!/usr/bin/env sh
 archivos_cambiados=$(git diff --name-only)
-echo "funciona hooks"
+
 for archivo in $archivos_cambiados; do
     mvn spring-javaformat:apply -Dspring-javaformat.glob=$archivo
 done
