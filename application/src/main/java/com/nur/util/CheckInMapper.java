@@ -6,7 +6,6 @@ import com.nur.model.CheckIn;
 import java.util.UUID;
 
 public class CheckInMapper {
-
 	public static CheckInDTO from(CheckIn checkIn) {
 		if (checkIn == null)
 			return CheckInDTO.builder().build();
@@ -14,7 +13,6 @@ public class CheckInMapper {
 				.dateTimeCheckIn(checkIn.getDateTimeCheckIn()).typeCheckIn(checkIn.getTypeCheckIn())
 				.checkInId(checkIn.getKey().toString()).build();
 	}
-
 	public static CheckIn from(CheckInDTO checkInDTO) {
 		return new CheckIn(checkInDTO.getDateTimeCheckIn(), checkInDTO.getTypeCheckIn(),
 				UUID.fromString(checkInDTO.getReserveId()));
