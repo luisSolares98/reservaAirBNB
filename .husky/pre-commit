@@ -1,1 +1,5 @@
-mvn spring-javaformat:validate
+archivos_cambiados=$(git diff --name-only)
+
+for archivo in $archivos_cambiados; do
+    mvn spring-javaformat:apply -Dspring-javaformat.glob=$archivo
+done
