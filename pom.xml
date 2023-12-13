@@ -110,6 +110,14 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<mainClass>com.nur.Main</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>io.github.dathin</groupId>
 				<artifactId>jhusky</artifactId>
 				<version>1.0.9</version>
