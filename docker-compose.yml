@@ -1,11 +1,15 @@
 services:
   airnur:
-    build: .
+    build:
+      context: .
+    container_name: airnur-spring
+    image: luissolares98/msreserva:latest
     ports:
       - 9090:8080
     depends_on:
       - postgres
   postgres:
+    container_name: airnur-db
     image: postgres:16-alpine
     ports:
       - 6969:5432
