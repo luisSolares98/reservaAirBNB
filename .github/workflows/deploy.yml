@@ -10,8 +10,9 @@ name: Build & Deploy
 
 on:
   push:
-    branches: [ master ]
-  workflow_dispatch:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
 
 jobs:
   build_and_push:
