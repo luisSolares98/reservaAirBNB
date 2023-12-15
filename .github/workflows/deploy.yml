@@ -58,4 +58,4 @@ jobs:
           END
 
       - name: Stop the server
-        run: ssh staging 'cd reservaAirBNB && docker-compose down && docker-compose up'
+        run: ssh staging 'cd reservaAirBNB'
