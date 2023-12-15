@@ -45,6 +45,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /airnur
+            cd /reservaAirBNB
             docker-compose down
             docker-compose up
