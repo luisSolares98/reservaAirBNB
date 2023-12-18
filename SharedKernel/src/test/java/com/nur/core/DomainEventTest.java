@@ -34,7 +34,7 @@ class DomainEventTest {
 				return super.getOcurredOn();
 			}
 		};
-		ReflectionTestUtils.setField(event, "Key", UUID.fromString("effa368e-2f33-49c7-94e4-a4dfb3be2c27"));
+		ReflectionTestUtils.setField(event, "key", UUID.fromString("effa368e-2f33-49c7-94e4-a4dfb3be2c27"));
 
 	}
 

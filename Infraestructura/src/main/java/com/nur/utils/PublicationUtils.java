@@ -1,27 +1,19 @@
 package com.nur.utils;
 
-import com.nur.core.BussinessRuleValidationException;
 import com.nur.exceptions.InvalidDataException;
 import com.nur.model.Publication;
 import com.nur.model.UserPublicReserveJpaModel;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class PublicationUtils {
 
-	public static List<Publication> publicationJpaModelList(List<UserPublicReserveJpaModel> publications)
-			throws BussinessRuleValidationException {
+	public static List<Publication> publicationJpaModelList(List<UserPublicReserveJpaModel> publications) {
 		if (publications == null)
 			return Collections.emptyList();
-		return publications.stream().map((UserPublicReserveJpaModel publication) -> {
-			try {
-				return jpaToPublication(publication);
-			}
-			catch (BussinessRuleValidationException e) {
-				throw new RuntimeException(e);
-			}
-		}).toList();
+		return publications.stream().map(PublicationUtils::jpaToPublication).toList();
 	}
 
 	public static UserPublicReserveJpaModel publicationToJpaEntity(Publication publication) {
@@ -34,11 +26,11 @@ public class PublicationUtils {
 		return model;
 	}
 
-	public static Publication jpaToPublication(UserPublicReserveJpaModel jpaModel)
-			throws BussinessRuleValidationException {
-		if (jpaModel == null) {
-			throw new InvalidDataException("Data Not Found");
-		}
+	public static Publication jpaToPublication(UserPublicReserveJpaModel jpaModel) {
+
+		if (Objects.isNull(jpaModel))
+			throw new InvalidDataException("jpaModel is null");
+
 		return new Publication(jpaModel.getId(), jpaModel.getAmount(), jpaModel.getPublishID(), jpaModel.getReserveID(),
 				jpaModel.getUserID());
 	}

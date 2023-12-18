@@ -61,7 +61,7 @@ class PublicationUtilsTest {
 	void jpaToPublicationNull() throws BussinessRuleValidationException {
 		InvalidDataException exception = assertThrows(InvalidDataException.class,
 				() -> PublicationUtils.jpaToPublication(null));
-		assertEquals("Data Not Found", exception.getMessage());
+		assertEquals("jpaModel is null", exception.getMessage());
 	}
 
 }

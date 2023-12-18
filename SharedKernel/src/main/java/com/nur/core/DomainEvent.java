@@ -8,13 +8,13 @@ import java.util.UUID;
 @Getter
 public abstract class DomainEvent {
 
-	public UUID Key;
+	public final UUID key;
 
-	public LocalDateTime OcurredOn;
+	public final LocalDateTime ocurredOn;
 
 	protected DomainEvent(LocalDateTime ocurredOn) {
-		this.OcurredOn = ocurredOn;
-		this.Key = UUID.randomUUID();
+		this.ocurredOn = ocurredOn;
+		this.key = UUID.randomUUID();
 	}
 
 }
