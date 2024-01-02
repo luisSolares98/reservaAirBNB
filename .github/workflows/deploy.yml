@@ -10,7 +10,7 @@ name: Build & Deploy
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "develop" ]
 
@@ -58,4 +58,4 @@ jobs:
           END
 
       - name: Stop the server
-        run: ssh staging 'cd reservaAirBNB && docker-compose down && docker-compose up -d'
+        run: ssh staging 'cd reservaAirBNB && git pull && docker-compose down && docker-compose up -d'
