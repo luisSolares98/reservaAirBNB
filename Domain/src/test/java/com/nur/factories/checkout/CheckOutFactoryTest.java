@@ -17,23 +17,27 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class CheckOutFactoryTest {
 
-    @Mock
-    CheckOutFactory factory;
+	@Mock
+	CheckOutFactory factory;
 
-    @Spy
-    ICheckOutFactory inFactory;
-    @BeforeEach
-    void setUp() {
-        this.factory  = new CheckOutFactory();
-    }
+	@Spy
+	ICheckOutFactory inFactory;
 
-    @Test
-    void create() throws BussinessRuleValidationException, ParseException {
-        CheckOut expect =  CheckOutFixture.whitDefault();
-        CheckOut response = factory.create(expect.getDateTimeCheckOut(), expect.getTypeCheckOut(), expect.getReserveID());
-        assertEquals(expect.toString(), response.toString());
-    }
+	@BeforeEach
+	void setUp() {
+		this.factory = new CheckOutFactory();
+	}
+
+	@Test
+	void create() throws BussinessRuleValidationException, ParseException {
+		CheckOut expect = CheckOutFixture.whitDefault();
+		CheckOut response = factory.create(expect.getDateTimeCheckOut(), expect.getTypeCheckOut(),
+				expect.getReserveID());
+		assertEquals(expect.toString(), response.toString());
+	}
+
 }

@@ -19,23 +19,24 @@ import java.util.UUID;
 @ToString
 public class UserPublicReserveJpaModel {
 
-    @Id
-    @Column(nullable = false)
-    private UUID id;
+	@Id
+	@Column(nullable = false)
+	private UUID id;
 
-    @Column(nullable = false)
-    @NotNull(message = "el publishID no puede ser null")
-    private UUID publishID;
+	@Column(nullable = false)
+	@NotNull(message = "el publishID no puede ser null")
+	private UUID publishID;
 
-    @Column(nullable = false)
-    @NotNull(message = "el reserveID no puede ser null")
-    private UUID reserveID;
+	@Column(nullable = false)
+	@NotNull(message = "el reserveID no puede ser null")
+	private UUID reserveID;
 
-    @Column(nullable = false)
-    @NotNull(message = "el userID no puede ser null")
-    private UUID userID;
+	@Column(nullable = false)
+	@NotNull(message = "el userID no puede ser null")
+	private UUID userID;
 
-    @Column(nullable = false)
-    @NotNull(message = "el amount no puede ser null")
-    private BigDecimal amount;
+	@Column(nullable = false)
+	@NotNull(message = "el amount no puede ser null")
+	private BigDecimal amount;
+
 }

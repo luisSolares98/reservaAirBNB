@@ -13,21 +13,23 @@ import java.util.UUID;
 
 @Component
 public class GetPaymentHandler implements Command.Handler<GetPaymentCommand, PaymentDTO> {
-    private final IPaymentRepository repository;
 
-    public GetPaymentHandler(IPaymentRepository repository) {
-        this.repository = repository;
-    }
+	private final IPaymentRepository repository;
 
-    @SneakyThrows
-    @Override
-    public PaymentDTO handle(GetPaymentCommand command) {
-        try{
-            Payment check = repository.getById(UUID.fromString(command.getPaymen()));
-            return PaymentInMapper.from(check);
-        } catch (Exception ex) {
-            throw new InvalidDataException(ex.getMessage());
-        }
-    }
+	public GetPaymentHandler(IPaymentRepository repository) {
+		this.repository = repository;
+	}
+
+	@SneakyThrows
+	@Override
+	public PaymentDTO handle(GetPaymentCommand command) {
+		try {
+			Payment check = repository.getById(UUID.fromString(command.getPaymen()));
+			return PaymentInMapper.from(check);
+		}
+		catch (Exception ex) {
+			throw new InvalidDataException(ex.getMessage());
+		}
+	}
 
 }

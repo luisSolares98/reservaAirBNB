@@ -7,8 +7,10 @@ import java.util.UUID;
 
 public interface IReserveRepository {
 
-    List<Reserve> getAll() throws BussinessRuleValidationException;
+	List<Reserve> getAll() throws BussinessRuleValidationException;
 
-    UUID updateReserve(Reserve reserve);
-    Reserve getById(UUID id) throws BussinessRuleValidationException;
+	UUID updateReserve(Reserve reserve);
+
+	Reserve getById(UUID id) throws BussinessRuleValidationException;
+
 }

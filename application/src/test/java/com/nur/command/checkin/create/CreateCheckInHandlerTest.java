@@ -16,37 +16,43 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class CreateCheckInHandlerTest {
-    @Mock
-    ICheckInRepository checkInRepository;
-    @Spy
-    ICheckInFactory checkInFactory;
 
-    @Mock
-    CreateCheckInHandler service;
-    @BeforeEach
-    void setUp() {
-        service = new CreateCheckInHandler(checkInRepository);
+	@Mock
+	ICheckInRepository checkInRepository;
 
-    }
+	@Spy
+	ICheckInFactory checkInFactory;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        // when(checkInFactory.create(any(Date.class),any(String.class),any(UUID.class))).thenReturn(CheckInFixture.whitDefault());
-        CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
-        CreateCheckInCommand command = new CreateCheckInCommand(CheckInDTOFixture.withDefaultResponse());
-        CheckInDTO respuesta = service.handle(command);
-        assertEquals(expect.getReserveId(), respuesta.getReserveId());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        // when(checkInFactory.create(any(Date.class),any(String.class),any(UUID.class))).thenReturn(CheckInFixture.whitDefault());
-        CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
-        expect.setReserveId(null);
-        CreateCheckInCommand command = new CreateCheckInCommand(expect);
+	@Mock
+	CreateCheckInHandler service;
 
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
+	@BeforeEach
+	void setUp() {
+		service = new CreateCheckInHandler(checkInRepository);
 
-    }
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		// when(checkInFactory.create(any(Date.class),any(String.class),any(UUID.class))).thenReturn(CheckInFixture.whitDefault());
+		CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
+		CreateCheckInCommand command = new CreateCheckInCommand(CheckInDTOFixture.withDefaultResponse());
+		CheckInDTO respuesta = service.handle(command);
+		assertEquals(expect.getReserveId(), respuesta.getReserveId());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		// when(checkInFactory.create(any(Date.class),any(String.class),any(UUID.class))).thenReturn(CheckInFixture.whitDefault());
+		CheckInDTO expect = CheckInDTOFixture.withDefaultResponse();
+		expect.setReserveId(null);
+		CreateCheckInCommand command = new CreateCheckInCommand(expect);
+
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+
+	}
+
 }

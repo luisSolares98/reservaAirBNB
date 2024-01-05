@@ -13,31 +13,37 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class ReserveFactoryTest {
-    @Mock
-    ReserveFactory reserveFactory;
 
-    @Spy
-    IReserveFactory iReserveFactory;
-    @BeforeEach
-    void setUp() {
-        this.reserveFactory  = new ReserveFactory();
-    }
+	@Mock
+	ReserveFactory reserveFactory;
 
-    @Test
-    void createReserve() throws BussinessRuleValidationException, ParseException {
-        Reserve expect = ReserveFixture.whitDefault();
-        expect.setState(expect.getState());
-        expect.setDateIn(expect.getDateIn());
-        expect.setDateOut(expect.getDateOut());
-        Reserve reserve = reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut());
-        assertEquals(expect.toString(), reserve.toString());
-    }
-    @Test
-    void createFail() throws BussinessRuleValidationException, ParseException {
-        Reserve expect = ReserveFixture.whitDefaultFail();
-        BussinessRuleValidationException exception = assertThrows(BussinessRuleValidationException.class, () -> reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut())) ;
-        assertEquals("la fecha de ingreso no puede ser mayor a la de la salida", exception.getDetails());
-    }
+	@Spy
+	IReserveFactory iReserveFactory;
+
+	@BeforeEach
+	void setUp() {
+		this.reserveFactory = new ReserveFactory();
+	}
+
+	@Test
+	void createReserve() throws BussinessRuleValidationException, ParseException {
+		Reserve expect = ReserveFixture.whitDefault();
+		expect.setState(expect.getState());
+		expect.setDateIn(expect.getDateIn());
+		expect.setDateOut(expect.getDateOut());
+		Reserve reserve = reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut());
+		assertEquals(expect.toString(), reserve.toString());
+	}
+
+	@Test
+	void createFail() throws BussinessRuleValidationException, ParseException {
+		Reserve expect = ReserveFixture.whitDefaultFail();
+		BussinessRuleValidationException exception = assertThrows(BussinessRuleValidationException.class,
+				() -> reserveFactory.createReserve(expect.getDateIn(), expect.getState(), expect.getDateOut()));
+		assertEquals("la fecha de ingreso no puede ser mayor a la de la salida", exception.getDetails());
+	}
+
 }

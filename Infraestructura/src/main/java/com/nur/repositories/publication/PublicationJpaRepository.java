@@ -13,27 +13,24 @@ import java.util.UUID;
 
 @Service
 public class PublicationJpaRepository implements IPublicationRepository {
-    @Autowired
-    private IPublicationCrudRepository publicationCrudRepository;
 
+	@Autowired
+	private IPublicationCrudRepository publicationCrudRepository;
 
-    @Override
-    public UUID update(Publication publication) throws BussinessRuleValidationException {
-        UserPublicReserveJpaModel reserveJpaModel = PublicationUtils.publicationToJpaEntity(publication);
-        return publicationCrudRepository.save(reserveJpaModel).getId();
-    }
+	@Override
+	public UUID update(Publication publication) throws BussinessRuleValidationException {
+		UserPublicReserveJpaModel reserveJpaModel = PublicationUtils.publicationToJpaEntity(publication);
+		return publicationCrudRepository.save(reserveJpaModel).getId();
+	}
 
-    @Override
-    public Publication getById(UUID id) throws BussinessRuleValidationException {
-            return PublicationUtils.jpaToPublication(
-                    publicationCrudRepository.findById(id).orElse(null)
-            );
-    }
+	@Override
+	public Publication getById(UUID id) throws BussinessRuleValidationException {
+		return PublicationUtils.jpaToPublication(publicationCrudRepository.findById(id).orElse(null));
+	}
 
-    @Override
-    public List<Publication> getByUserID(UUID userID) throws BussinessRuleValidationException {
-        return PublicationUtils.publicationJpaModelList(publicationCrudRepository.listByUserId(userID));
-    }
-
+	@Override
+	public List<Publication> getByUserID(UUID userID) throws BussinessRuleValidationException {
+		return PublicationUtils.publicationJpaModelList(publicationCrudRepository.listByUserId(userID));
+	}
 
 }

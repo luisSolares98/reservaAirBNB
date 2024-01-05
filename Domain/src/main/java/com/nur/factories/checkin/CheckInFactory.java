@@ -6,8 +6,9 @@ import java.util.UUID;
 
 public class CheckInFactory implements ICheckInFactory {
 
-  @Override
-  public CheckIn create(Date dateTimeCheckIn, String typeCheckIn, UUID reserveID) {
-    return new CheckIn(dateTimeCheckIn, typeCheckIn, reserveID);
-  }
+	@Override
+	public CheckIn create(Date dateTimeCheckIn, String typeCheckIn, UUID reserveID) {
+		return new CheckIn(dateTimeCheckIn, typeCheckIn, reserveID);
+	}
+
 }

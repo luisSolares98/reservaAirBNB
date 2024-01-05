@@ -6,8 +6,9 @@ import java.util.UUID;
 
 public class PaymentFactory implements IPaymentFactory {
 
-  @Override
-  public Payment create(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException {
-    return new Payment(statePayment, payment, reserveID);
-  }
+	@Override
+	public Payment create(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException {
+		return new Payment(statePayment, payment, reserveID);
+	}
+
 }

@@ -14,37 +14,42 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class ReserveInMapperTest {
-    @Mock
-    ReserveInMapper mapper;
-    @BeforeEach
-    void setUp() {
-        mapper = new ReserveInMapper();
-    }
 
-    @Test
-    void from() throws ParseException, BussinessRuleValidationException {
-        Reserve expect = ReserveFixture.whitDefault();
-        Reserve response = ReserveInMapper.from(ReserveDTOFixture.withDefault());
-        assertEquals(expect.toString(), response.toString());
-    }
+	@Mock
+	ReserveInMapper mapper;
 
-    @Test
-    void testFromNull() {
-        ReserveDTO expect = ReserveDTO.builder().build();
-        ReserveDTO response = ReserveInMapper.from((Reserve) null);
-        assertEquals(expect.toString(), response.toString());
-    }
-    @Test
-    void testFrom() throws BussinessRuleValidationException, ParseException {
-        Reserve example = ReserveFixture.whitDefault();
-        ReserveDTO expect = ReserveDTOFixture.withDefaultResponse();
-        expect.setDateIn(expect.getDateIn());
-        expect.setState(expect.getState());
-        expect.setDateOut(expect.getDateOut());
-        expect.setReserveID(expect.getReserveID());
-        ReserveDTO response = ReserveInMapper.from(example);
-        assertEquals(expect.toString(), response.toString());
-    }
+	@BeforeEach
+	void setUp() {
+		mapper = new ReserveInMapper();
+	}
+
+	@Test
+	void from() throws ParseException, BussinessRuleValidationException {
+		Reserve expect = ReserveFixture.whitDefault();
+		Reserve response = ReserveInMapper.from(ReserveDTOFixture.withDefault());
+		assertEquals(expect.toString(), response.toString());
+	}
+
+	@Test
+	void testFromNull() {
+		ReserveDTO expect = ReserveDTO.builder().build();
+		ReserveDTO response = ReserveInMapper.from((Reserve) null);
+		assertEquals(expect.toString(), response.toString());
+	}
+
+	@Test
+	void testFrom() throws BussinessRuleValidationException, ParseException {
+		Reserve example = ReserveFixture.whitDefault();
+		ReserveDTO expect = ReserveDTOFixture.withDefaultResponseNull();
+		expect.setDateIn(expect.getDateIn());
+		expect.setState(expect.getState());
+		expect.setDateOut(expect.getDateOut());
+		expect.setReserveID(expect.getReserveID());
+		ReserveDTO response = ReserveInMapper.from(example);
+		assertEquals(expect.toString(), response.toString());
+	}
+
 }

@@ -5,5 +5,7 @@ import com.nur.model.Payment;
 import java.util.UUID;
 
 public interface IPaymentFactory {
-  Payment create(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException;
+
+	Payment create(String statePayment, float payment, UUID reserveID) throws BussinessRuleValidationException;
+
 }

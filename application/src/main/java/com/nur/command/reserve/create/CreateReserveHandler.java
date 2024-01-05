@@ -1,7 +1,5 @@
 package com.nur.command.reserve.create;
 
-import an.awesome.pipelinr.Command;
-import com.nur.core.BussinessRule;
 import com.nur.core.BussinessRuleValidationException;
 import com.nur.dtos.ReserveDTO;
 import com.nur.exceptions.InvalidDataException;
@@ -18,62 +16,74 @@ import com.nur.rabbit.Response;
 import com.nur.respositories.IPublicationRepository;
 import com.nur.respositories.IReserveRepository;
 import com.nur.util.ReserveInMapper;
+
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+import an.awesome.pipelinr.Command;
+
 @Component
 public class CreateReserveHandler implements Command.Handler<CreateReserveCommand, ReserveDTO> {
 
+	private final IReserveRepository reserveRepository;
 
-    private final IReserveRepository reserveRepository;
-    private final IReserveFactory reserveFactory;
+	private final IReserveFactory reserveFactory;
 
-    @Autowired
-    private IPublicationRepository publicationRepository;
-    private final IPublicationFactory publicationFactory;
-    @Autowired
-    private RabbitTemplate template;
+	private IPublicationRepository publicationRepository;
 
-    public CreateReserveHandler(IReserveRepository reserveRepository) {
-        this.reserveRepository = reserveRepository;
-        this.reserveFactory = new ReserveFactory();
-        this.publicationFactory = new PublicationFactory();
-    }
+	private final IPublicationFactory publicationFactory;
 
+	@Autowired
+	private RabbitTemplate template;
 
-    @Override
-    public ReserveDTO handle(CreateReserveCommand createReserveCommand)  {
-        Reserve reserve = null;
-        try {
-            reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(), createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut());
-            UUID reserveID = reserveRepository.updateReserve(reserve);
+	@Autowired
+	public CreateReserveHandler(IReserveRepository reserveRepository, IPublicationRepository publicationRepository) {
+		this.reserveRepository = reserveRepository;
+		this.publicationRepository = publicationRepository;
+		this.reserveFactory = new ReserveFactory();
+		this.publicationFactory = new PublicationFactory();
+	}
 
-            Publication publication = publicationFactory.createPublication(UUID.fromString(createReserveCommand.reserveDTO.getPublishID()),reserveID, createReserveCommand.reserveDTO.getAmount(), UUID.fromString(createReserveCommand.reserveDTO.getUserID()) );
-            publicationRepository.update(publication);
+	@Override
+	public ReserveDTO handle(CreateReserveCommand createReserveCommand) {
+		Reserve reserve = null;
+		try {
+			reserve = reserveFactory.createReserve(createReserveCommand.reserveDTO.getDateIn(),
+					createReserveCommand.reserveDTO.getState(), createReserveCommand.reserveDTO.getDateOut());
+			UUID reserveID = reserveRepository.updateReserve(reserve);
 
-            Pattern pattern = Pattern.builder().cmd(Config.EXCHANGE).build();
+			Publication publication = publicationFactory.createPublication(
+					UUID.fromString(createReserveCommand.reserveDTO.getPublishID()), reserveID,
+					createReserveCommand.reserveDTO.getAmount(),
+					UUID.fromString(createReserveCommand.reserveDTO.getUserID()));
+			publicationRepository.update(publication);
 
-            CustomMessage message = CustomMessage.builder().id(UUID.fromString(createReserveCommand.reserveDTO.getUserID()))
-                    .message("The Reserve was successfully created").build();
+			Pattern pattern = Pattern.builder().cmd(Config.EXCHANGE).build();
 
-            Response response = Response.builder().data(message).pattern(pattern).build();
-            // Reddis notify
-            template.convertAndSend(Config.EXCHANGE, response);
+			CustomMessage message = CustomMessage.builder()
+					.id(UUID.fromString(createReserveCommand.reserveDTO.getUserID()))
+					.message("The Reserve was successfully created").build();
 
-            pattern.setCmd(Config.EXCHANGE2);
-            CustomMessage message2 = CustomMessage.builder().id(publication.getPublicationID())
-                    .message("The Reserve was successfully created").build();
-            response.setData(message2);
-            // Reddis notify
-            template.convertAndSend(Config.EXCHANGE2, response);
+			Response response = Response.builder().data(message).pattern(pattern).build();
 
-            return ReserveInMapper.from(reserve);
-        } catch (BussinessRuleValidationException ex) {
-            throw new InvalidDataException(ex.getDetails());
-        }
-    }
+			// Reddis notify
+			template.convertAndSend(Config.EXCHANGE, response);
+
+			pattern.setCmd(Config.EXCHANGE2);
+			CustomMessage message2 = CustomMessage.builder().id(publication.getPublicationID())
+					.message("The Reserve was successfully created").build();
+			response.setData(message2);
+			// Reddis notify
+			template.convertAndSend(Config.EXCHANGE2, response);
+
+			return ReserveInMapper.from(reserve);
+		}
+		catch (BussinessRuleValidationException ex) {
+			throw new InvalidDataException(ex.getDetails());
+		}
+	}
 
 }

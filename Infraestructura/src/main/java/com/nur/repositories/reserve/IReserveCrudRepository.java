@@ -10,8 +10,8 @@ import java.util.UUID;
 
 @Repository
 public interface IReserveCrudRepository extends JpaRepository<ReserveJpaModel, UUID> {
-    @Query(
-            "SELECT reserveJpaModel from ReserveJpaModel as reserveJpaModel"
-    )
-    List<ReserveJpaModel> listReserve(ReserveJpaModel reserveJpaModel);
+
+	@Query("SELECT reserveJpaModel from ReserveJpaModel as reserveJpaModel")
+	List<ReserveJpaModel> listReserve(ReserveJpaModel reserveJpaModel);
+
 }

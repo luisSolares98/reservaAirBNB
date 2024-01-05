@@ -6,9 +6,11 @@ import lombok.Getter;
 
 @Getter
 public class GetCheckInCommand implements Command<CheckInDTO> {
-    String checkInID;
 
-    public GetCheckInCommand(String checkInID) {
-        this.checkInID = checkInID;
-    }
+	String checkInID;
+
+	public GetCheckInCommand(String checkInID) {
+		this.checkInID = checkInID;
+	}
+
 }

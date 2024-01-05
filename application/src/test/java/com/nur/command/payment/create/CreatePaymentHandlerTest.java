@@ -19,41 +19,47 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class CreatePaymentHandlerTest {
 
-    @Mock
-    IPaymentRepository repository;
-    @Spy
-    IPaymentFactory factory;
+	@Mock
+	IPaymentRepository repository;
 
-    @Mock
-    CreatePaymentHandler service;
-    @BeforeEach
-    void setUp() {
-        service = new CreatePaymentHandler(repository);
+	@Spy
+	IPaymentFactory factory;
 
-    }
+	@Mock
+	CreatePaymentHandler service;
 
-    @Test
-    void handle() throws ParseException, BussinessRuleValidationException {
-        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
-        CreatePaymentCommand command = new CreatePaymentCommand(PaymentDTOFixture.withDefaultResponse());
-        PaymentDTO respuesta = service.handle(command);
-        assertEquals(expect.getReserveID(), respuesta.getReserveID());
-    }
-    @Test
-    void handleError() throws ParseException, BussinessRuleValidationException {
-        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
-        expect.setReserveID(null);
-        CreatePaymentCommand command = new CreatePaymentCommand(expect);
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
-    @Test
-    void handleErrorMoneda() throws ParseException, BussinessRuleValidationException {
-        PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
-        expect.setPayment(0l);
-        CreatePaymentCommand command = new CreatePaymentCommand(expect);
-        assertThrows(InvalidDataException.class, () -> service.handle(command)) ;
-    }
+	@BeforeEach
+	void setUp() {
+		service = new CreatePaymentHandler(repository);
+
+	}
+
+	@Test
+	void handle() throws ParseException, BussinessRuleValidationException {
+		PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+		CreatePaymentCommand command = new CreatePaymentCommand(PaymentDTOFixture.withDefaultResponse());
+		PaymentDTO respuesta = service.handle(command);
+		assertEquals(expect.getReserveID(), respuesta.getReserveID());
+	}
+
+	@Test
+	void handleError() throws ParseException, BussinessRuleValidationException {
+		PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+		expect.setReserveID(null);
+		CreatePaymentCommand command = new CreatePaymentCommand(expect);
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
+	@Test
+	void handleErrorMoneda() throws ParseException, BussinessRuleValidationException {
+		PaymentDTO expect = PaymentDTOFixture.withDefaultResponse();
+		expect.setPayment(0l);
+		CreatePaymentCommand command = new CreatePaymentCommand(expect);
+		assertThrows(InvalidDataException.class, () -> service.handle(command));
+	}
+
 }

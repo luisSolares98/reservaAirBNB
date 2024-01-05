@@ -13,17 +13,17 @@ import java.util.UUID;
 @ToString
 public class PaymentJapModel {
 
-    @Id
-    @Column(nullable = false)
-    private UUID id;
+	@Id
+	@Column(nullable = false)
+	private UUID id;
 
-    @Column(nullable = false)
-    private float payment;
+	@Column(nullable = false)
+	private float payment;
 
-    @Column(nullable = false)
-    private String statePayment;
+	@Column(nullable = false)
+	private String statePayment;
 
-    @Column(nullable = false)
-    private UUID reserveID;
+	@Column(nullable = false)
+	private UUID reserveID;
 
 }
